@@ -4,38 +4,42 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>805 Avon Ct · Listing Activity</title>
-<meta name="description" content="Online activity for 805 Avon Court, Dixon, CA: portal views, ListTrac syndication and social media results.">
+<meta name="description" content="Marketing and online activity report for 805 Avon Court, Dixon, CA: portal views, syndication, showings, social media and the home's floor plan.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-/* Layout: one centered column; summary tiles, then two-up cards that stack on phones */
+/* Layout: one centered column — header, headline tiles, then themed sections of two-up cards that stack on phones */
 :root {
   --bg: #f6f7f4; --panel: #ffffff; --fg: #1d2420; --muted: #5d6a63; --line: #dde3de;
-  --accent: #2f6b4f; --accent-soft: #d7e8de; --accent-2: #b8742a;
+  --accent: #2f6b4f; --accent-soft: #d7e8de; --accent-2: #b8742a; --mutedbar: #c9d3cc;
   --display: "Fraunces", Georgia, serif; --body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) { --bg: #141916; --panel: #1c231f; --fg: #e8eee9; --muted: #9aa8a0; --line: #2d3832; --accent: #7cc39c; --accent-soft: #24382d; --accent-2: #e0a65e; color-scheme: dark; }
+  :root:not([data-theme="light"]) { --bg: #141916; --panel: #1c231f; --fg: #e8eee9; --muted: #9aa8a0; --line: #2d3832; --accent: #7cc39c; --accent-soft: #24382d; --accent-2: #e0a65e; --mutedbar: #3a4740; color-scheme: dark; }
 }
-:root[data-theme="dark"] { --bg: #141916; --panel: #1c231f; --fg: #e8eee9; --muted: #9aa8a0; --line: #2d3832; --accent: #7cc39c; --accent-soft: #24382d; --accent-2: #e0a65e; color-scheme: dark; }
+:root[data-theme="dark"] { --bg: #141916; --panel: #1c231f; --fg: #e8eee9; --muted: #9aa8a0; --line: #2d3832; --accent: #7cc39c; --accent-soft: #24382d; --accent-2: #e0a65e; --mutedbar: #3a4740; color-scheme: dark; }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 15px; line-height: 1.5; }
-.wrap { max-width: 1040px; margin: 0 auto; padding-block: 40px 56px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: flex; flex-direction: column; gap: 32px; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-block: 40px 56px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: flex; flex-direction: column; gap: 36px; }
 header { display: flex; flex-direction: column; gap: 10px; }
 .eyebrow { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
-h1 { font-family: var(--display); font-weight: 400; font-size: clamp(30px, 5vw, 46px); line-height: 1.1; margin: 0; text-wrap: balance; }
+h1 { font-family: var(--display); font-weight: 400; font-size: clamp(30px, 5vw, 48px); line-height: 1.1; margin: 0; text-wrap: balance; }
 .facts { display: flex; flex-wrap: wrap; gap: 8px 18px; color: var(--muted); }
 .facts b { color: var(--fg); font-weight: 600; }
-.lede { max-width: 62ch; margin: 0; font-size: 17px; }
-.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr)); gap: 12px; }
+.lede { max-width: 64ch; margin: 0; font-size: 17px; }
+nav.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+nav.toc a { font-size: 13px; color: var(--fg); text-decoration: none; padding: 4px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--panel); }
+nav.toc a:hover { border-color: var(--accent); }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 155px), 1fr)); gap: 12px; }
 .tile { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 18px; display: flex; flex-direction: column; gap: 4px; }
 .tile .k { font-size: 13px; color: var(--muted); }
 .tile .v { font-family: var(--display); font-size: 34px; line-height: 1.1; font-variant-numeric: tabular-nums; }
 .tile .n { font-size: 13px; color: var(--muted); }
-section { display: flex; flex-direction: column; gap: 14px; }
-h2 { font-family: var(--display); font-weight: 400; font-size: 24px; margin: 0; }
+section { display: flex; flex-direction: column; gap: 14px; scroll-margin-top: 16px; }
+h2 { font-family: var(--display); font-weight: 400; font-size: 26px; margin: 0; }
+.sec-lede { margin: -6px 0 0; color: var(--muted); max-width: 70ch; }
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 14px; }
 .card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
 .card h3 { margin: 0; font-size: 16px; font-weight: 600; }
@@ -53,11 +57,38 @@ td a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offs
 .bar { display: inline-block; height: 8px; border-radius: 4px; background: var(--accent); vertical-align: middle; margin-left: 8px; }
 .badges { display: flex; flex-wrap: wrap; gap: 8px; }
 .badge { font-size: 13px; padding: 3px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--fg); }
-.cities { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
-.cities li { font-size: 13px; padding: 3px 10px; border: 1px solid var(--line); border-radius: 999px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.chips li { font-size: 13px; padding: 4px 12px; border: 1px solid var(--line); border-radius: 999px; }
+.cmp { display: flex; flex-direction: column; gap: 14px; }
+.cmp-row { display: grid; grid-template-columns: 9rem 1fr auto; gap: 10px; align-items: center; font-size: 14px; }
+.cmp-track { height: 12px; border-radius: 6px; background: transparent; position: relative; }
+.cmp-fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 6px; }
+.cmp-fill.us { background: var(--accent); }
+.cmp-fill.them { background: var(--mutedbar); }
+.cmp-val { font-variant-numeric: tabular-nums; min-width: 3.5rem; text-align: right; }
+.cmp h4 { margin: 0; font-size: 14px; font-weight: 600; }
+.split { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr)); gap: 12px; }
+.mini { border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 2px; }
+.mini .v { font-family: var(--display); font-size: 26px; font-variant-numeric: tabular-nums; }
+.mini .k { font-size: 13px; color: var(--muted); }
+ol.timeline { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+ol.timeline li { display: grid; grid-template-columns: 4.5rem 14px 1fr; gap: 10px; align-items: start; padding-bottom: 14px; position: relative; }
+ol.timeline .when { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 1px; }
+ol.timeline .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); margin-top: 6px; position: relative; z-index: 1; }
+ol.timeline li:not(:last-child)::after { content: ""; position: absolute; left: calc(4.5rem + 14px); top: 16px; bottom: 0; width: 2px; background: var(--line); }
+ul.feat { margin: 0; padding-left: 1.1em; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 6px 20px; }
+figure { margin: 0; display: flex; flex-direction: column; gap: 8px; }
+figure img { width: 100%; max-width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--line); background: #fff; }
+figcaption { font-size: 13px; color: var(--muted); }
+details { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 20px; }
+details summary { cursor: pointer; font-weight: 600; }
+details dl { margin: 12px 0 0; display: grid; grid-template-columns: minmax(8rem, max-content) 1fr; gap: 8px 16px; font-size: 14px; }
+details dt { font-weight: 600; }
+details dd { margin: 0; color: var(--muted); }
 footer { border-top: 1px solid var(--line); padding-top: 18px; font-size: 13px; color: var(--muted); display: flex; flex-direction: column; gap: 6px; }
 footer b { color: var(--fg); }
-a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (max-width: 520px) { .cmp-row { grid-template-columns: 6.5rem 1fr auto; } details dl { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -65,13 +96,41 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   <header>
     <span class="eyebrow">Listing activity report · as of November 13, 2026</span>
     <h1>805 Avon Court, Dixon</h1>
-    <div class="facts"><span><b>$485,000</b></span><span>3 bed · 2 bath</span><span>1,311 sq ft</span><span>8,276 sq ft corner lot</span><span>MLS #326083269</span></div>
+    <div class="facts"><span><b>$485,000</b></span><span>3 bed · 2 bath</span><span>1,311 sq ft</span><span>8,276 sq ft corner lot</span><span>Stratford Manor</span><span>MLS #326083269</span></div>
     <p class="lede" id="lede"></p>
+    <nav class="toc" aria-label="Sections">
+      <a href="#compare">How it compares</a><a href="#buyers">Buyer activity</a><a href="#online">Online portals</a><a href="#social">Social media</a><a href="#marketing">Marketing</a><a href="#home">The home</a>
+    </nav>
   </header>
 
   <div class="tiles" id="tiles"></div>
 
-  <section>
+  <section id="compare">
+    <h2>How it compares</h2>
+    <p class="sec-lede">Against the median of eight other Rapisarda Real Estate listings that came on the market between late September and late October 2026, using the same ListTrac reports.</p>
+    <div class="card">
+      <div class="cmp" id="cmp"></div>
+      <p class="cap">ListTrac totals as of the November 9 report. Views per day divides total views by days since each listing started.</p>
+    </div>
+  </section>
+
+  <section id="buyers">
+    <h2>Buyer activity</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Showings</h3>
+        <p class="cap">Confirmed appointments booked through ShowingTime.</p>
+        <div class="split" id="showings"></div>
+      </div>
+      <div class="card">
+        <h3>What buyers' agents liked</h3>
+        <p class="cap">Themes from showing feedback, in agents' own words.</p>
+        <ul class="chips" id="liked"></ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="online">
     <h2>Online portals</h2>
     <div class="grid">
       <div class="card">
@@ -82,120 +141,226 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
       </div>
       <div class="card">
         <h3>Views per week across all syndicated sites</h3>
-        <p class="cap">From weekly ListTrac reports: Zillow, Realtor.com, Trulia, Homes.com, MLS and agent websites. Each bar is the 7 days before that Monday's report.</p>
+        <p class="cap">From weekly ListTrac reports covering Zillow, Realtor.com, Trulia, Homes.com, MLS and agent websites. Each bar is the 7 days before that Monday's report.</p>
         <div class="chart" id="weekly"></div>
       </div>
     </div>
-    <div class="card">
-      <h3>Where identified viewers came from</h3>
-      <p class="cap">The top city in each weekly ListTrac report. Most portal visitors aren't located, so this is a sample.</p>
-      <ul class="cities" id="cities"></ul>
+    <div class="grid">
+      <div class="card">
+        <h3>Weekly ListTrac reports</h3>
+        <p class="cap">Running totals since the listing started.</p>
+        <div class="scroll"><table id="ltable"><thead><tr><th>Week ending</th><th class="r">Total views</th><th class="r">Past 7 days</th><th class="r">Shares</th><th class="r">Favorites</th></tr></thead><tbody></tbody></table></div>
+      </div>
+      <div class="card">
+        <h3>Where identified viewers came from</h3>
+        <p class="cap">The top city in each weekly ListTrac report. Most portal visitors aren't located, so treat this as a sample of the buyer pool.</p>
+        <ul class="chips" id="cities"></ul>
+      </div>
     </div>
   </section>
 
-  <section>
+  <section id="social">
     <h2>Social media</h2>
     <div class="card">
+      <h3>Views by platform</h3>
+      <div class="split" id="channels"></div>
+    </div>
+    <div class="card">
       <h3>Every post featuring the home</h3>
-      <p class="cap">Instagram views, Facebook impressions and YouTube views, from Metricool. Engagements are likes, comments, saves and shares.</p>
-      <div class="scroll"><table id="social"><thead><tr><th>Posted</th><th>Channel</th><th>Post</th><th class="r">Views</th><th class="r">Reach</th><th class="r">Engagements</th></tr></thead><tbody></tbody></table></div>
+      <p class="cap">Instagram views, Facebook impressions and YouTube views, from Metricool. Engagements are likes, comments, saves and shares; clicks are Facebook taps into the post.</p>
+      <div class="scroll"><table id="socialt"><thead><tr><th>Posted</th><th>Channel</th><th>Post</th><th class="r">Views</th><th class="r">Reach</th><th class="r">Engagements</th><th class="r">Clicks</th></tr></thead><tbody></tbody></table></div>
     </div>
   </section>
+
+  <section id="marketing">
+    <h2>Marketing</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Launch timeline</h3>
+        <ol class="timeline" id="timeline"></ol>
+      </div>
+      <div class="card">
+        <h3>Where the listing appears</h3>
+        <p class="cap">Sites that carry the listing through the MLS feed.</p>
+        <ul class="chips" id="sites"></ul>
+        <h3>Assets produced</h3>
+        <ul class="chips" id="assets"></ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="home">
+    <h2>The home</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Highlights</h3>
+        <ul class="feat" id="features"></ul>
+      </div>
+      <div class="card">
+        <figure>
+          <img src="floorplan.jpg" alt="Floor plan of 805 Avon Court showing three bedrooms, two baths, separate living and family rooms, dining area and kitchen" width="1500" height="1125" loading="lazy">
+          <figcaption>Floor plan with approximate room sizes.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <details>
+    <summary>How these numbers are counted</summary>
+    <dl>
+      <dt>Online views</dt><dd>ListTrac counts each time the listing is viewed on a site that receives it from the MLS: portals, MLS systems and agent websites.</dd>
+      <dt>Shares</dt><dd>Times the listing was emailed or sent from one of those sites, mostly agents sending it to clients.</dd>
+      <dt>Saves</dt><dd>Shoppers who saved or favorited the home on Zillow or Redfin.</dd>
+      <dt>Showings</dt><dd>In-person appointments confirmed in ShowingTime.</dd>
+      <dt>Social views</dt><dd>Instagram views, Facebook impressions and YouTube views. Reach counts unique accounts on Instagram and Facebook.</dd>
+    </dl>
+  </details>
 
   <footer>
     <span><b>Tom Rapisarda</b>, Rapisarda Real Estate · 707-592-2852 · DRE #01705989 · Brokerage DRE #01837888</span>
-    <span>Counts come from each platform's own reporting and may differ in how they define a view. Information deemed reliable but not guaranteed.</span>
+    <span>Counts come from each platform's own reporting and may define a view differently. Information deemed reliable but not guaranteed.</span>
   </footer>
 </main>
 
 <script>
 const DATA = {
-  asOf: "2026-11-13",
   daysOnZillow: 39,
-  listtracTotal: { views: 2715, shares: 200, favorites: 4, report: "2026-11-09" },
-  portals: [
-    { site: "Zillow", views: 967, saves: 84 },
-    { site: "Redfin", views: 169, saves: 3 }
-  ],
+  listtrac: { views: 2715, shares: 200, favorites: 4, viewsPerDay: 78 },
+  peerMedian: { viewsPerDay: 69, shares: 81, views: 1999 },
+  showings: { total: 23, firstTwoWeeks: 16, lastTwoWeeks: 7 },
+  liked: ["Floor plan", "Location", "Lot size", "RV access", "Good bones", "\"Clients really like the home\"", "\"Buyers love the house and property\""],
+  portals: [ { site: "Zillow", views: 967, saves: 84 }, { site: "Redfin", views: 169, saves: 3 } ],
   badges: ["Homes.com: Very Popular (Oct 7)", "Homes.com: Hot Property (Oct 9)"],
   weekly: [
-    { report: "2026-10-12", views: 1056, top: "Zillow.com", topViews: 648, city: "Sacramento, CA" },
-    { report: "2026-10-19", views: 582, top: "Zillow.com", topViews: 377, city: "Woodland, CA" },
-    { report: "2026-10-26", views: 292, top: "Zillow.com", topViews: 183, city: "Woodland, CA" },
-    { report: "2026-11-02", views: 40, top: "Zillow.com", topViews: 15, city: "Dixon, CA" },
-    { report: "2026-11-09", views: 359, top: "Zillow.com", topViews: 228, city: "Vallejo, CA" }
+    { report: "2026-10-12", views: 1056, total: 1110, shares: 81, fav: 1, top: "Zillow.com", topViews: 648, city: "Sacramento, CA" },
+    { report: "2026-10-19", views: 582, total: 1868, shares: 120, fav: 1, top: "Zillow.com", topViews: 377, city: "Woodland, CA" },
+    { report: "2026-10-26", views: 292, total: 2284, shares: 125, fav: 3, top: "Zillow.com", topViews: 183, city: "Woodland, CA" },
+    { report: "2026-11-02", views: 40, total: 2331, shares: 125, fav: 3, top: "Zillow.com", topViews: 15, city: "Dixon, CA" },
+    { report: "2026-11-09", views: 359, total: 2715, shares: 200, fav: 4, top: "Zillow.com", topViews: 228, city: "Vallejo, CA" }
   ],
   social: [
-    { posted: "2026-10-07", channel: "Instagram · Rapisarda Real Estate", post: "Daily Rap-Up feature", views: 303, reach: 149, eng: 4, url: "https://www.instagram.com/p/DeNPuTegCaU/" },
-    { posted: "2026-10-07", channel: "Facebook · Rapisarda Real Estate", post: "Daily Rap-Up feature", views: 175, reach: 106, eng: 0, url: "https://facebook.com/1240720443852095/posts/1923880392202760" },
-    { posted: "2026-10-08", channel: "YouTube · Tom & Shawnee", post: "Corner lot tour video", views: 17, reach: null, eng: 1, url: "https://www.youtube.com/watch?v=lXXu32kjdLI" },
-    { posted: "2026-10-08", channel: "Instagram · Tom & Shawnee", post: "Drone fly-through", views: 364, reach: 254, eng: 6, url: "https://www.instagram.com/reel/DeQFEVwCogz/" },
-    { posted: "2026-10-08", channel: "YouTube · Tom & Shawnee", post: "Drone fly-through", views: 26, reach: null, eng: 0, url: "https://www.youtube.com/watch?v=Yn4YnOfomgs" },
-    { posted: "2026-10-09", channel: "Instagram · Tom & Shawnee", post: "Just listed carousel", views: 769, reach: 336, eng: 7, url: "https://www.instagram.com/p/DeRVL4xD7w8/" },
-    { posted: "2026-10-09", channel: "Facebook · Tom & Shawnee", post: "Just listed carousel", views: 214, reach: 142, eng: 0, url: "https://facebook.com/1019838990141364/posts/1727679279357328" },
-    { posted: "2026-10-21", channel: "Instagram · Rapisarda Real Estate", post: "Daily Rap-Up feature", views: 267, reach: 120, eng: 3, url: "https://www.instagram.com/p/Dew8MwgidmO/" },
-    { posted: "2026-10-21", channel: "Facebook · Rapisarda Real Estate", post: "Daily Rap-Up feature", views: 139, reach: 96, eng: 0, url: "https://facebook.com/1240720443852095/posts/1938814404042692" }
+    { posted: "2026-10-07", platform: "Instagram", channel: "Instagram · Rapisarda Real Estate", post: "Daily Rap-Up feature", views: 303, reach: 149, eng: 4, clicks: null, url: "https://www.instagram.com/p/DeNPuTegCaU/" },
+    { posted: "2026-10-07", platform: "Facebook", channel: "Facebook · Rapisarda Real Estate", post: "Daily Rap-Up feature", views: 175, reach: 106, eng: 0, clicks: 17, url: "https://facebook.com/1240720443852095/posts/1923880392202760" },
+    { posted: "2026-10-08", platform: "YouTube", channel: "YouTube · Tom & Shawnee", post: "Corner lot tour video", views: 17, reach: null, eng: 1, clicks: null, url: "https://www.youtube.com/watch?v=lXXu32kjdLI" },
+    { posted: "2026-10-08", platform: "Instagram", channel: "Instagram · Tom & Shawnee", post: "Drone fly-through", views: 364, reach: 254, eng: 6, clicks: null, url: "https://www.instagram.com/reel/DeQFEVwCogz/" },
+    { posted: "2026-10-08", platform: "YouTube", channel: "YouTube · Tom & Shawnee", post: "Drone fly-through", views: 26, reach: null, eng: 0, clicks: null, url: "https://www.youtube.com/watch?v=Yn4YnOfomgs" },
+    { posted: "2026-10-09", platform: "Instagram", channel: "Instagram · Tom & Shawnee", post: "Just listed carousel", views: 769, reach: 336, eng: 7, clicks: null, url: "https://www.instagram.com/p/DeRVL4xD7w8/" },
+    { posted: "2026-10-09", platform: "Facebook", channel: "Facebook · Tom & Shawnee", post: "Just listed carousel", views: 214, reach: 142, eng: 0, clicks: 16, url: "https://facebook.com/1019838990141364/posts/1727679279357328" },
+    { posted: "2026-10-21", platform: "Instagram", channel: "Instagram · Rapisarda Real Estate", post: "Daily Rap-Up feature", views: 267, reach: 120, eng: 3, clicks: null, url: "https://www.instagram.com/p/Dew8MwgidmO/" },
+    { posted: "2026-10-21", platform: "Facebook", channel: "Facebook · Rapisarda Real Estate", post: "Daily Rap-Up feature", views: 139, reach: 96, eng: 0, clicks: 6, url: "https://facebook.com/1240720443852095/posts/1938814404042692" }
+  ],
+  timeline: [
+    ["2026-10-05", "Listed on the MLS and syndicated to Zillow, Realtor.com, Redfin, Homes.com and agent sites. ShowingTime opens for appointments."],
+    ["2026-10-06", "Busiest showing day of the launch, with four appointments."],
+    ["2026-10-07", "Featured in the Rapisarda Real Estate Daily Rap-Up. Homes.com flags it Very Popular."],
+    ["2026-10-08", "Drone fly-through reel and tour video published."],
+    ["2026-10-09", "Just-listed carousel on Instagram and Facebook. Homes.com flags it Hot Property."],
+    ["2026-10-12", "First weekly ListTrac report: over a thousand views in week one."],
+    ["2026-10-21", "Second Daily Rap-Up feature."]
+  ],
+  sites: ["Zillow", "Realtor.com", "Trulia", "Redfin", "Homes.com", "MLS systems", "Agent and broker websites"],
+  assets: ["Listing photos", "Floor plan", "Drone fly-through reel", "Tour video", "Social carousels", "Yard sign"],
+  features: [
+    "Single-story living",
+    "8,276 sq ft corner lot",
+    "Front and pull-through parking for an RV or boat",
+    "Separate living and family rooms",
+    "Brick fireplace in the family room",
+    "Large backyard patio",
+    "Citrus trees and a storage shed",
+    "One block from Northwest Park",
+    "Established Stratford Manor neighborhood",
+    "$370 per sq ft"
   ]
 };
 
 const fmt = (n) => n == null ? "" : n.toLocaleString("en-US");
 const day = (s) => new Date(s + "T00:00:00Z").toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
 const el = (tag, attrs = {}, text) => { const e = document.createElement(tag); Object.entries(attrs).forEach(([k, v]) => e.setAttribute(k, v)); if (text != null) e.textContent = text; return e; };
+const $ = (id) => document.getElementById(id);
 
 const socialViews = DATA.social.reduce((s, r) => s + r.views, 0);
 const socialReach = DATA.social.reduce((s, r) => s + (r.reach || 0), 0);
 const portalSaves = DATA.portals.reduce((s, r) => s + r.saves, 0);
+const viewsLift = DATA.listtrac.viewsPerDay / DATA.peerMedian.viewsPerDay - 1;
+const sharesX = DATA.listtrac.shares / DATA.peerMedian.shares;
 
-document.getElementById("lede").textContent =
-  `In its first ${DATA.daysOnZillow} days online, this Dixon home has been viewed ${fmt(DATA.listtracTotal.views)} times across real estate sites, saved ${fmt(portalSaves)} times on Zillow and Redfin, and seen ${fmt(socialViews)} times on social media.`;
+$("lede").textContent =
+  `In ${DATA.daysOnZillow} days online, this Dixon home has been viewed ${fmt(DATA.listtrac.views)} times across real estate sites, shared ${fmt(DATA.listtrac.shares)} times, saved ${fmt(portalSaves)} times on Zillow and Redfin, and toured at ${DATA.showings.total} showings. It's drawing ${Math.round(viewsLift * 100)}% more views per day than the team's typical recent listing.`;
 
 [
-  ["Total online views", DATA.listtracTotal.views, "All syndicated sites (ListTrac)"],
-  ["Shares", DATA.listtracTotal.shares, "Sent to buyers and friends"],
-  ["Zillow saves", DATA.portals[0].saves, `${fmt(DATA.portals[0].views)} Zillow views`],
-  ["Social views", socialViews, `${fmt(socialReach)} accounts reached`],
-  ["Social posts", DATA.social.length, "Instagram, Facebook, YouTube"]
-].forEach(([k, v, n]) => {
-  const t = el("div", { class: "tile" });
-  t.append(el("span", { class: "k" }, k), el("span", { class: "v" }, fmt(v)), el("span", { class: "n" }, n));
-  document.getElementById("tiles").append(t);
+  ["Total online views", fmt(DATA.listtrac.views), "All syndicated sites (ListTrac)"],
+  ["Shares", fmt(DATA.listtrac.shares), `${sharesX.toFixed(1)}× the team median`],
+  ["Saves", fmt(portalSaves), "Zillow and Redfin"],
+  ["Showings", fmt(DATA.showings.total), "Confirmed in ShowingTime"],
+  ["Social views", fmt(socialViews), `${fmt(socialReach)} accounts reached`],
+  ["Days online", fmt(DATA.daysOnZillow), "Since Oct 5"]
+].forEach(([k, v, n]) => { const t = el("div", { class: "tile" }); t.append(el("span", { class: "k" }, k), el("span", { class: "v" }, v), el("span", { class: "n" }, n)); $("tiles").append(t); });
+
+[
+  ["Views per day", DATA.listtrac.viewsPerDay, DATA.peerMedian.viewsPerDay],
+  ["Shares", DATA.listtrac.shares, DATA.peerMedian.shares],
+  ["Total views", DATA.listtrac.views, DATA.peerMedian.views]
+].forEach(([label, us, them]) => {
+  const max = Math.max(us, them);
+  const block = el("div");
+  block.append(el("h4", {}, label));
+  [["805 Avon Ct", us, "us"], ["Team median", them, "them"]].forEach(([name, v, cls]) => {
+    const row = el("div", { class: "cmp-row" });
+    const track = el("div", { class: "cmp-track" });
+    track.append(el("div", { class: "cmp-fill " + cls, style: `width:${(v / max) * 100}%` }));
+    row.append(el("span", {}, name), track, el("span", { class: "cmp-val" }, fmt(v)));
+    block.append(row);
+  });
+  $("cmp").append(block);
 });
 
-const pb = document.querySelector("#portals tbody");
+[["Total showings", DATA.showings.total], ["First two weeks", DATA.showings.firstTwoWeeks], ["Last two weeks", DATA.showings.lastTwoWeeks]]
+  .forEach(([k, v]) => { const m = el("div", { class: "mini" }); m.append(el("span", { class: "v" }, fmt(v)), el("span", { class: "k" }, k)); $("showings").append(m); });
+DATA.liked.forEach((t) => $("liked").append(el("li", {}, t)));
+
 const maxP = Math.max(...DATA.portals.map((p) => p.views));
 DATA.portals.forEach((p) => {
-  const tr = el("tr");
-  const tv = el("td", { class: "r" }, fmt(p.views));
+  const tr = el("tr"); const tv = el("td", { class: "r" }, fmt(p.views));
   tv.append(el("span", { class: "bar", style: `width:${(p.views / maxP) * 4.5}rem` }));
   tr.append(el("td", {}, p.site), tv, el("td", { class: "r" }, fmt(p.saves)));
-  pb.append(tr);
+  document.querySelector("#portals tbody").append(tr);
 });
-DATA.badges.forEach((b) => document.getElementById("badges").append(el("span", { class: "badge" }, b)));
+DATA.badges.forEach((b) => $("badges").append(el("span", { class: "badge" }, b)));
 
-const seen = new Set();
-DATA.weekly.forEach((w) => { if (!seen.has(w.city)) { seen.add(w.city); document.getElementById("cities").append(el("li", {}, w.city)); } });
-
-const sb = document.querySelector("#social tbody");
-DATA.social.forEach((r) => {
+DATA.weekly.forEach((w) => {
   const tr = el("tr");
-  const tdp = el("td"); const a = el("a", { href: r.url, target: "_blank", rel: "noopener" }, r.post); tdp.append(a);
-  tr.append(el("td", {}, day(r.posted)), el("td", {}, r.channel), tdp, el("td", { class: "r" }, fmt(r.views)), el("td", { class: "r" }, fmt(r.reach)), el("td", { class: "r" }, fmt(r.eng)));
-  sb.append(tr);
+  tr.append(el("td", {}, day(w.report)), el("td", { class: "r" }, fmt(w.total)), el("td", { class: "r" }, fmt(w.views)), el("td", { class: "r" }, fmt(w.shares)), el("td", { class: "r" }, fmt(w.fav)));
+  document.querySelector("#ltable tbody").append(tr);
 });
+const seen = new Set();
+DATA.weekly.forEach((w) => { if (!seen.has(w.city)) { seen.add(w.city); $("cities").append(el("li", {}, w.city)); } });
+
+const byPlat = {};
+DATA.social.forEach((r) => { byPlat[r.platform] = byPlat[r.platform] || { views: 0, posts: 0 }; byPlat[r.platform].views += r.views; byPlat[r.platform].posts += 1; });
+Object.entries(byPlat).sort((a, b) => b[1].views - a[1].views).forEach(([p, v]) => {
+  const m = el("div", { class: "mini" }); m.append(el("span", { class: "v" }, fmt(v.views)), el("span", { class: "k" }, `${p} · ${v.posts} post${v.posts > 1 ? "s" : ""}`)); $("channels").append(m);
+});
+DATA.social.forEach((r) => {
+  const tr = el("tr"); const tdp = el("td"); tdp.append(el("a", { href: r.url, target: "_blank", rel: "noopener" }, r.post));
+  tr.append(el("td", {}, day(r.posted)), el("td", {}, r.channel), tdp, el("td", { class: "r" }, fmt(r.views)), el("td", { class: "r" }, fmt(r.reach)), el("td", { class: "r" }, fmt(r.eng)), el("td", { class: "r" }, fmt(r.clicks)));
+  document.querySelector("#socialt tbody").append(tr);
+});
+
+DATA.timeline.forEach(([d, t]) => { const li = el("li"); li.append(el("span", { class: "when" }, day(d)), el("span", { class: "dot" }), el("span", {}, t)); $("timeline").append(li); });
+DATA.sites.forEach((s) => $("sites").append(el("li", {}, s)));
+DATA.assets.forEach((s) => $("assets").append(el("li", {}, s)));
+DATA.features.forEach((f) => $("features").append(el("li", {}, f)));
 
 function drawWeekly() {
-  const box = document.getElementById("weekly");
-  box.replaceChildren();
+  const box = $("weekly"); box.replaceChildren();
   const W = Math.max(280, box.clientWidth), H = 230, m = { t: 20, r: 6, b: 28, l: 6 };
   const ns = "http://www.w3.org/2000/svg";
-  const svg = document.createElementNS(ns, "svg");
-  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
-  svg.setAttribute("role", "img");
-  svg.setAttribute("aria-label", "Online views per week from ListTrac reports");
+  const mk = (tag, a) => { const e = document.createElementNS(ns, tag); Object.entries(a).forEach(([k, v]) => e.setAttribute(k, v)); return e; };
+  const svg = mk("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "Online views per week from ListTrac reports" });
   const n = DATA.weekly.length, slot = (W - m.l - m.r) / n, bw = Math.min(56, slot * 0.6);
   const max = Math.max(...DATA.weekly.map((w) => w.views));
   const y = (v) => H - m.b - (v / max) * (H - m.t - m.b);
-  const mk = (tag, a) => { const e = document.createElementNS(ns, tag); Object.entries(a).forEach(([k, v]) => e.setAttribute(k, v)); return e; };
   svg.append(mk("line", { x1: m.l, x2: W - m.r, y1: H - m.b, y2: H - m.b, stroke: "var(--line)" }));
   const tip = el("div", { class: "tip" }); tip.hidden = true;
   DATA.weekly.forEach((w, i) => {
@@ -206,8 +371,8 @@ function drawWeekly() {
       const b = box.getBoundingClientRect();
       tip.replaceChildren(el("div", { class: "d" }, "Week ending " + day(w.report)), el("div", {}, `${fmt(w.views)} views`), el("div", {}, `${w.top}: ${fmt(w.topViews)}`));
       tip.hidden = false;
-      const x = Math.min(Math.max(0, ev.clientX - b.left + 12), box.clientWidth - tip.offsetWidth);
-      tip.style.left = x + "px"; tip.style.top = Math.max(0, ev.clientY - b.top - 50) + "px";
+      tip.style.left = Math.min(Math.max(0, ev.clientX - b.left + 12), box.clientWidth - tip.offsetWidth) + "px";
+      tip.style.top = Math.max(0, ev.clientY - b.top - 50) + "px";
     });
     hit.addEventListener("mouseleave", () => { tip.hidden = true; });
     const lab = mk("text", { x: cx, y: y(w.views) - 6, "text-anchor": "middle", "font-size": 12, fill: "var(--muted)" }); lab.textContent = fmt(w.views);
