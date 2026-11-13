@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>805 Avon Ct · Listing Activity</title>
-<meta name="description" content="Weekly and overall activity report for 805 Avon Court, Dixon, CA.">
+<meta name="description" content="First-week showings and online activity, overall totals and comparison for 805 Avon Court, Dixon, CA.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-/* Layout: one column — this week first, then overall, then the home */
+/* Layout: one column of four sections — first-week showings, first-week online, overall, comparison */
 :root {
   --bg: #f6f7f4; --panel: #ffffff; --fg: #1d2420; --muted: #5d6a63; --line: #dde3de;
   --accent: #2f6b4f; --accent-soft: #d7e8de;
@@ -22,7 +22,7 @@
 :root[data-theme="dark"] { --bg: #141916; --panel: #1c231f; --fg: #e8eee9; --muted: #9aa8a0; --line: #2d3832; --accent: #7cc39c; --accent-soft: #24382d; color-scheme: dark; }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 15px; line-height: 1.5; }
-.wrap { max-width: 1040px; margin: 0 auto; padding-block: 36px 48px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: flex; flex-direction: column; gap: 32px; }
+.wrap { max-width: 1000px; margin: 0 auto; padding-block: 36px 48px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: flex; flex-direction: column; gap: 32px; }
 header { display: flex; flex-direction: column; gap: 8px; }
 .eyebrow { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
 h1 { font-family: var(--display); font-weight: 400; font-size: clamp(30px, 5vw, 44px); line-height: 1.1; margin: 0; }
@@ -36,8 +36,7 @@ h2 small { font-family: var(--body); font-size: 13px; color: var(--muted); }
 .tile .k { font-size: 13px; color: var(--muted); }
 .tile .v { font-family: var(--display); font-size: 32px; line-height: 1.15; font-variant-numeric: tabular-nums; }
 .tile .n { font-size: 13px; color: var(--muted); }
-.week .tile { border-color: var(--accent); }
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 12px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr)); gap: 12px; }
 .card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 18px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
 .card h3 { margin: 0; font-size: 15px; font-weight: 600; }
 .cap { margin: 0; font-size: 13px; color: var(--muted); }
@@ -47,22 +46,13 @@ h2 small { font-family: var(--body); font-size: 13px; color: var(--muted); }
 .tip .d { color: var(--muted); }
 .scroll { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: 14px; }
-th { text-align: left; font-size: 12px; font-weight: 600; color: var(--muted); padding: 6px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
-td { padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { text-align: left; font-size: 12px; font-weight: 600; color: var(--muted); padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: bottom; }
+td { padding: 7px 8px; border-bottom: 1px solid var(--line); }
 .r { text-align: right; }
-td.muted { color: var(--muted); }
-tr.me td { font-weight: 600; }
-td a { color: var(--accent); text-underline-offset: 2px; }
-.bar { display: inline-block; height: 8px; border-radius: 4px; background: var(--accent); vertical-align: middle; margin-left: 8px; }
-.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
-.chips li { font-size: 13px; padding: 3px 11px; border-radius: 999px; background: var(--accent-soft); }
-ul.feat { margin: 0; padding-left: 1.1em; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 4px 20px; }
-figure { margin: 0; display: flex; flex-direction: column; gap: 6px; }
-figure img { width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--line); background: #fff; }
-figcaption { font-size: 13px; color: var(--muted); }
+tr.me td { font-weight: 600; background: var(--accent-soft); }
+tr.med td { color: var(--muted); font-style: italic; border-bottom: 0; }
 footer { border-top: 1px solid var(--line); padding-top: 16px; font-size: 13px; color: var(--muted); display: flex; flex-direction: column; gap: 4px; }
 footer b { color: var(--fg); }
-a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 </style>
 </head>
 <body>
@@ -70,66 +60,48 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   <header>
     <span class="eyebrow">Listing activity · as of November 13, 2026</span>
     <h1>805 Avon Court, Dixon</h1>
-    <div class="facts"><span><b>$485,000</b></span><span>3 bed · 2 bath</span><span>1,311 sq ft</span><span>8,276 sq ft corner lot</span><span>MLS #326083269</span></div>
+    <div class="facts"><span><b>$485,000</b></span><span>3 bed · 2 bath</span><span>1,311 sq ft</span><span>MLS #326083269</span></div>
   </header>
 
-  <section class="week">
-    <h2>This week <small id="weekRange"></small></h2>
-    <div class="tiles" id="weekTiles"></div>
+  <section>
+    <h2>Showings: first week <small>Oct 5–11</small></h2>
+    <div class="tiles" id="showTiles"></div>
     <div class="card">
-      <h3>Buyer feedback this week</h3>
-      <ul class="chips" id="weekLiked"></ul>
+      <h3>Showings by day</h3>
+      <div class="chart" id="showDays"></div>
     </div>
   </section>
 
   <section>
-    <h2>Overall <small>Since October 5</small></h2>
-    <div class="tiles" id="tiles"></div>
+    <h2>Online activity: first week <small>Oct 5–12, ListTrac</small></h2>
+    <div class="tiles" id="onlineTiles"></div>
+  </section>
+
+  <section>
+    <h2>Overall <small>Oct 5 – Nov 13</small></h2>
+    <div class="tiles" id="overallTiles"></div>
     <div class="grid">
       <div class="card">
         <h3>Online views per week</h3>
-        <p class="cap">All syndicated sites (ListTrac), week ending each Monday.</p>
-        <div class="chart" id="views"></div>
+        <div class="chart" id="viewsWeekly"></div>
       </div>
       <div class="card">
         <h3>Showings per week</h3>
-        <p class="cap">Confirmed in ShowingTime. Paused while under contract.</p>
-        <div class="chart" id="showings"></div>
+        <div class="chart" id="showWeekly"></div>
       </div>
-    </div>
-    <div class="grid">
-      <div class="card">
-        <h3>Portals</h3>
-        <div class="scroll"><table id="portals"><thead><tr><th>Site</th><th class="r">Views</th><th class="r">Saves</th></tr></thead><tbody></tbody></table></div>
-        <ul class="chips" id="badges"></ul>
-      </div>
-      <div class="card">
-        <h3>Vs. team's recent listings</h3>
-        <div class="scroll"><table id="bench"><thead><tr><th>Listing</th><th class="r">Views</th><th class="r">Views/day</th><th class="r">Shares</th></tr></thead><tbody></tbody></table></div>
-      </div>
-    </div>
-    <div class="card">
-      <h3>Showing feedback</h3>
-      <div class="scroll"><table id="feedback"><thead><tr><th>Date</th><th>Brokerage</th><th>Liked</th><th>Hesitations</th></tr></thead><tbody></tbody></table></div>
-    </div>
-    <div class="card">
-      <h3>Social posts</h3>
-      <div class="scroll"><table id="social"><thead><tr><th>Posted</th><th>Channel</th><th>Post</th><th class="r">Views</th><th class="r">Reach</th></tr></thead><tbody></tbody></table></div>
     </div>
   </section>
 
   <section>
-    <h2>The home</h2>
-    <div class="grid">
-      <div class="card">
-        <ul class="feat" id="features"></ul>
+    <h2>Compared with other listings <small>Team listings started Sep 29 – Oct 27</small></h2>
+    <div class="card">
+      <div class="scroll">
+        <table id="bench">
+          <thead><tr><th>Listing</th><th class="r">First-week views/day</th><th class="r">Total views</th><th class="r">Views/day to date</th><th class="r">Shares</th></tr></thead>
+          <tbody></tbody>
+        </table>
       </div>
-      <div class="card">
-        <figure>
-          <img src="floorplan.jpg" alt="Floor plan of 805 Avon Court: three bedrooms, two baths, living room, family room, dining area and kitchen" width="1500" height="1125">
-          <figcaption>Approximate room sizes.</figcaption>
-        </figure>
-      </div>
+      <p class="cap">ListTrac reports. First week = start to first weekly report. Totals as of Nov 9.</p>
     </div>
   </section>
 
@@ -141,89 +113,79 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 <script>
 const DATA = {
-  week: { range: "Nov 7–13", views: 359, newShares: 75, newFavorites: 1, showings: 6, zillowViews: 228, topCity: "Vallejo, CA",
-          liked: ["Floor plan", "Location", "Lot size", "\"Buyers love the house and property\""] },
+  firstWeekShowings: [["2026-10-05", 1], ["2026-10-06", 4], ["2026-10-07", 1], ["2026-10-08", 2], ["2026-10-09", 0], ["2026-10-10", 0], ["2026-10-11", 3]],
+  firstWeekOnline: { views: 1110, shares: 81, favorites: 1, zillowViews: 648, topCity: "Sacramento, CA" },
   overall: { days: 39, views: 2715, shares: 200, saves: 87, showings: 23, socialViews: 2274 },
   weekly: [["2026-10-12", 1056], ["2026-10-19", 582], ["2026-10-26", 292], ["2026-11-02", 40], ["2026-11-09", 359]],
   showWeeks: [["2026-10-05", 11], ["2026-10-12", 5], ["2026-10-19", 0], ["2026-10-26", 0], ["2026-11-02", 5], ["2026-11-09", 2]],
-  portals: [["Zillow", 967, 84], ["Redfin", 169, 3]],
-  badges: ["Homes.com Very Popular", "Homes.com Hot Property"],
+  // listing, first-report views, days to first report, total views (Nov 9), days live (Nov 9), shares
   bench: [
-    ["805 Avon Ct", 2715, 78, 200], ["800 Westgate Dr", 2667, 127, 31], ["248 Santa Cruz Dr", 2547, 62, 463],
-    ["460 Mandarin Cir", 2350, 62, 235], ["115 Bryce Way", 2228, 111, 98], ["416 Limerick Way", 1769, 66, 63],
-    ["608 Snapdragon St", 1548, 47, 3], ["133 Isle Royale Cir", 1448, 72, 109], ["4114 Rowland Dr", 950, 73, 41]
-  ],
-  feedback: [
-    ["2026-11-07", "Rapisarda Real Estate", "Buyers love the house and property", "Budget for updates"],
-    ["2026-11-05", "eXp Realty", "Floor plan; location; lot size", "Wants updates"],
-    ["2026-10-15", "Keller Williams Vaca Valley", "", "Too small for their family"],
-    ["2026-10-11", "Twin Oaks Real Estate", "RV access; good bones", "Parking; front trees"],
-    ["2026-10-08", "RE/MAX Gold", "Really liked the home", ""],
-    ["2026-10-07", "Dream Home Real Estate", "Clients interested", ""],
-    ["2026-10-06", "Leyson Realty", "Clients really like the home", ""],
-    ["2026-10-05", "Century 21 Epic", "", "Trees in the front yard"]
-  ],
-  social: [
-    ["2026-10-21", "Instagram · RRE", "Daily Rap-Up", 267, 120, "https://www.instagram.com/p/Dew8MwgidmO/"],
-    ["2026-10-21", "Facebook · RRE", "Daily Rap-Up", 139, 96, "https://facebook.com/1240720443852095/posts/1938814404042692"],
-    ["2026-10-09", "Instagram · Tom & Shawnee", "Just listed carousel", 769, 336, "https://www.instagram.com/p/DeRVL4xD7w8/"],
-    ["2026-10-09", "Facebook · Tom & Shawnee", "Just listed carousel", 214, 142, "https://facebook.com/1019838990141364/posts/1727679279357328"],
-    ["2026-10-08", "Instagram · Tom & Shawnee", "Drone fly-through", 364, 254, "https://www.instagram.com/reel/DeQFEVwCogz/"],
-    ["2026-10-08", "YouTube · Tom & Shawnee", "Drone fly-through", 26, null, "https://www.youtube.com/watch?v=Yn4YnOfomgs"],
-    ["2026-10-08", "YouTube · Tom & Shawnee", "Tour video", 17, null, "https://www.youtube.com/watch?v=lXXu32kjdLI"],
-    ["2026-10-07", "Instagram · RRE", "Daily Rap-Up", 303, 149, "https://www.instagram.com/p/DeNPuTegCaU/"],
-    ["2026-10-07", "Facebook · RRE", "Daily Rap-Up", 175, 106, "https://facebook.com/1240720443852095/posts/1923880392202760"]
-  ],
-  features: ["Single-story", "8,276 sq ft corner lot", "RV/boat pull-through parking", "Separate living and family rooms", "Brick fireplace", "Large backyard patio", "Citrus trees and storage shed", "One block from Northwest Park"]
+    ["805 Avon Ct", 1110, 7, 2715, 35, 200], ["800 Westgate Dr", 1536, 7, 2667, 21, 31], ["248 Santa Cruz Dr", 971, 6, 2547, 41, 463],
+    ["460 Mandarin Cir", 1071, 10, 2350, 38, 235], ["115 Bryce Way", 939, 6, 2228, 20, 98], ["416 Limerick Way", 851, 6, 1769, 27, 63],
+    ["608 Snapdragon St", 825, 5, 1548, 33, 3], ["133 Isle Royale Cir", 680, 6, 1448, 20, 109], ["4114 Rowland Dr", 576, 6, 950, 13, 41]
+  ]
 };
 
-const fmt = (n) => n == null ? "" : n.toLocaleString("en-US");
-const day = (s) => new Date(s + "T00:00:00Z").toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
+const fmt = (n) => n == null ? "" : Math.round(n).toLocaleString("en-US");
+const day = (s, o = { month: "short", day: "numeric" }) => new Date(s + "T00:00:00Z").toLocaleDateString("en-US", { ...o, timeZone: "UTC" });
 const el = (tag, attrs = {}, text) => { const e = document.createElement(tag); Object.entries(attrs).forEach(([k, v]) => e.setAttribute(k, v)); if (text != null) e.textContent = text; return e; };
 const $ = (id) => document.getElementById(id);
 const tile = (host, k, v, n) => { const t = el("div", { class: "tile" }); t.append(el("span", { class: "k" }, k), el("span", { class: "v" }, v)); if (n) t.append(el("span", { class: "n" }, n)); $(host).append(t); };
-const row = (tbody, cells, cls) => { const tr = el("tr", cls ? { class: cls } : {}); cells.forEach(([c, a]) => { const td = el("td", a || {}); if (c instanceof Node) td.append(c); else td.textContent = c; tr.append(td); }); document.querySelector(tbody).append(tr); };
 
-const w = DATA.week;
-$("weekRange").textContent = w.range;
-tile("weekTiles", "Showings", fmt(w.showings));
-tile("weekTiles", "Online views", fmt(w.views), `Zillow ${fmt(w.zillowViews)}`);
-tile("weekTiles", "New shares", "+" + fmt(w.newShares));
-tile("weekTiles", "New favorites", "+" + fmt(w.newFavorites));
-tile("weekTiles", "Top viewer city", w.topCity);
-w.liked.forEach((t) => $("weekLiked").append(el("li", {}, t)));
+// Showings, first week
+const fw = DATA.firstWeekShowings;
+const busiest = fw.reduce((a, b) => (b[1] > a[1] ? b : a));
+tile("showTiles", "Showings", fmt(fw.reduce((s, d) => s + d[1], 0)));
+tile("showTiles", "Busiest day", day(busiest[0], { weekday: "short", month: "short", day: "numeric" }), `${busiest[1]} showings`);
+tile("showTiles", "Days with showings", `${fw.filter((d) => d[1]).length} of 7`);
 
+// Online, first week
+const fo = DATA.firstWeekOnline;
+tile("onlineTiles", "Online views", fmt(fo.views));
+tile("onlineTiles", "Zillow views", fmt(fo.zillowViews));
+tile("onlineTiles", "Shares", fmt(fo.shares));
+tile("onlineTiles", "Favorites", fmt(fo.favorites));
+tile("onlineTiles", "Top viewer city", fo.topCity);
+
+// Overall
 const o = DATA.overall;
-tile("tiles", "Days online", fmt(o.days));
-tile("tiles", "Online views", fmt(o.views));
-tile("tiles", "Shares", fmt(o.shares));
-tile("tiles", "Saves", fmt(o.saves), "Zillow + Redfin");
-tile("tiles", "Showings", fmt(o.showings));
-tile("tiles", "Social views", fmt(o.socialViews));
+tile("overallTiles", "Days online", fmt(o.days));
+tile("overallTiles", "Online views", fmt(o.views));
+tile("overallTiles", "Shares", fmt(o.shares));
+tile("overallTiles", "Saves", fmt(o.saves), "Zillow + Redfin");
+tile("overallTiles", "Showings", fmt(o.showings));
+tile("overallTiles", "Social views", fmt(o.socialViews));
 
-const maxP = Math.max(...DATA.portals.map((p) => p[1]));
-DATA.portals.forEach(([s, v, sv]) => { const span = el("span"); span.append(fmt(v), el("span", { class: "bar", style: `width:${(v / maxP) * 4}rem` })); row("#portals tbody", [[s], [span, { class: "r" }], [fmt(sv), { class: "r" }]]); });
-DATA.badges.forEach((b) => $("badges").append(el("li", {}, b)));
-DATA.bench.forEach(([l, v, vpd, sh]) => row("#bench tbody", [[l], [fmt(v), { class: "r" }], [fmt(vpd), { class: "r" }], [fmt(sh), { class: "r" }]], l === "805 Avon Ct" ? "me" : ""));
-DATA.feedback.forEach(([d, b, l, h]) => row("#feedback tbody", [[day(d)], [b], [l], [h, { class: "muted" }]]));
-DATA.social.forEach(([d, c, p, v, r, u]) => { const a = el("a", { href: u, target: "_blank", rel: "noopener" }, p); row("#social tbody", [[day(d)], [c], [a], [fmt(v), { class: "r" }], [fmt(r), { class: "r" }]]); });
-DATA.features.forEach((f) => $("features").append(el("li", {}, f)));
+// Comparison
+const rows = DATA.bench.map(([l, fv, fd, tv, td, sh]) => ({ l, first: fv / fd, total: tv, perDay: tv / td, sh })).sort((a, b) => b.total - a.total);
+const tb = document.querySelector("#bench tbody");
+rows.forEach((r) => {
+  const tr = el("tr", r.l === "805 Avon Ct" ? { class: "me" } : {});
+  tr.append(el("td", {}, r.l), el("td", { class: "r" }, fmt(r.first)), el("td", { class: "r" }, fmt(r.total)), el("td", { class: "r" }, fmt(r.perDay)), el("td", { class: "r" }, fmt(r.sh)));
+  tb.append(tr);
+});
+const others = rows.filter((r) => r.l !== "805 Avon Ct");
+const median = (k) => { const v = others.map((r) => r[k]).sort((a, b) => a - b); const m = v.length / 2; return v.length % 2 ? v[Math.floor(m)] : (v[m - 1] + v[m]) / 2; };
+const mtr = el("tr", { class: "med" });
+mtr.append(el("td", {}, "Median of other listings"), el("td", { class: "r" }, fmt(median("first"))), el("td", { class: "r" }, fmt(median("total"))), el("td", { class: "r" }, fmt(median("perDay"))), el("td", { class: "r" }, fmt(median("sh"))));
+tb.append(mtr);
 
-function drawBars(box, rows, label, tipFn) {
+// Charts
+function drawBars(box, data, label, tickFn, tipFn) {
   box.replaceChildren();
-  const W = Math.max(280, box.clientWidth), H = 200, m = { t: 20, r: 6, b: 26, l: 6 };
+  const W = Math.max(280, box.clientWidth), H = 190, m = { t: 20, r: 6, b: 26, l: 6 };
   const ns = "http://www.w3.org/2000/svg";
   const mk = (tag, a) => { const e = document.createElementNS(ns, tag); Object.entries(a).forEach(([k, v]) => e.setAttribute(k, v)); return e; };
   const svg = mk("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": label });
-  const slot = (W - m.l - m.r) / rows.length, bw = Math.min(52, slot * 0.6), max = Math.max(1, ...rows.map((r) => r[1]));
+  const slot = (W - m.l - m.r) / data.length, bw = Math.min(48, slot * 0.6), max = Math.max(1, ...data.map((r) => r[1]));
   const y = (v) => H - m.b - (v / max) * (H - m.t - m.b);
   svg.append(mk("line", { x1: m.l, x2: W - m.r, y1: H - m.b, y2: H - m.b, stroke: "var(--line)" }));
   const tip = el("div", { class: "tip" }); tip.hidden = true;
-  rows.forEach(([d, v], i) => {
+  data.forEach(([d, v], i) => {
     const cx = m.l + slot * i + slot / 2;
     if (v) svg.append(mk("rect", { x: cx - bw / 2, y: y(v), width: bw, height: H - m.b - y(v), rx: 5, fill: "var(--accent)" }));
-    const lab = mk("text", { x: cx, y: (v ? y(v) : H - m.b) - 6, "text-anchor": "middle", "font-size": 12, fill: "var(--muted)" }); lab.textContent = v ? fmt(v) : "–";
-    const tick = mk("text", { x: cx, y: H - 7, "text-anchor": "middle", "font-size": 12, fill: "var(--muted)" }); tick.textContent = day(d);
+    const lab = mk("text", { x: cx, y: (v ? y(v) : H - m.b) - 6, "text-anchor": "middle", "font-size": 12, fill: "var(--muted)" }); lab.textContent = v ? fmt(v) : "0";
+    const tick = mk("text", { x: cx, y: H - 7, "text-anchor": "middle", "font-size": 12, fill: "var(--muted)" }); tick.textContent = tickFn(d);
     const hit = mk("rect", { x: m.l + slot * i, y: m.t, width: slot, height: H - m.t - m.b, fill: "transparent" });
     hit.addEventListener("mousemove", (ev) => { const b = box.getBoundingClientRect(); tip.replaceChildren(...tipFn(d, v)); tip.hidden = false; tip.style.left = Math.min(Math.max(0, ev.clientX - b.left + 12), box.clientWidth - tip.offsetWidth) + "px"; tip.style.top = Math.max(0, ev.clientY - b.top - 46) + "px"; });
     hit.addEventListener("mouseleave", () => { tip.hidden = true; });
@@ -231,9 +193,11 @@ function drawBars(box, rows, label, tipFn) {
   });
   box.append(svg, tip);
 }
+const plural = (n, w) => `${fmt(n)} ${w}${n === 1 ? "" : "s"}`;
 const draw = () => {
-  drawBars($("views"), DATA.weekly, "Online views per week", (d, v) => [el("div", { class: "d" }, "Week ending " + day(d)), el("div", {}, `${fmt(v)} views`)]);
-  drawBars($("showings"), DATA.showWeeks, "Showings per week", (d, v) => [el("div", { class: "d" }, "Week of " + day(d)), el("div", {}, v ? `${v} showing${v > 1 ? "s" : ""}` : "No showings")]);
+  drawBars($("showDays"), DATA.firstWeekShowings, "Showings by day in the first week", (d) => day(d, { weekday: "short" }), (d, v) => [el("div", { class: "d" }, day(d, { weekday: "short", month: "short", day: "numeric" })), el("div", {}, plural(v, "showing"))]);
+  drawBars($("viewsWeekly"), DATA.weekly, "Online views per week", (d) => day(d), (d, v) => [el("div", { class: "d" }, "Week ending " + day(d)), el("div", {}, plural(v, "view"))]);
+  drawBars($("showWeekly"), DATA.showWeeks, "Showings per week", (d) => day(d), (d, v) => [el("div", { class: "d" }, "Week of " + day(d)), el("div", {}, plural(v, "showing"))]);
 };
 draw();
 let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(draw, 120); });

@@ -1,20 +1,18 @@
 # 805 Avon Court · Listing Activity
 
-A one-page public report of online activity for 805 Avon Court, Dixon, CA (MLS #326083269), listed by Tom Rapisarda, Rapisarda Real Estate.
+A one-page public report for 805 Avon Court, Dixon, CA (MLS #326083269), listed by Tom Rapisarda, Rapisarda Real Estate. Data as of November 13, 2026.
 
-Data as of November 13, 2026. It covers:
+It covers:
 
-- Portal views and saves (Zillow, Redfin, Homes.com badges)
-- Weekly views across syndicated sites (ListTrac)
-- Social media posts and results (Instagram, Facebook, YouTube, via Metricool)
-- This week's activity, then overall totals, showings, feedback, team comparison, highlights and floor plan
+- Showings in the first week (ShowingTime)
+- Online activity in the first week (ListTrac)
+- Overall totals since listing
+- How the listing compares with the team's other recent listings
 
 ## Viewing it
 
-Open `index.html` in any browser (keep `floorplan.jpg` in the same folder). To publish it, turn on GitHub Pages for this repository (Settings → Pages → Deploy from branch → `main`, folder `/`).
+Open `index.html` in any browser. To publish it, turn on GitHub Pages for this repository (Settings → Pages → Deploy from branch → `main`, folder `/`).
 
 ## Updating
 
 The numbers are typed into the `DATA` block at the bottom of `index.html`. Change them there and commit.
-
-This version leaves out agent and buyer names, offers, the reason the first contract ended, and detailed condition remarks on purpose.
