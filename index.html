@@ -112,6 +112,11 @@ a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outli
       <div class="cmp" id="cmp"></div>
       <p class="cap">ListTrac totals as of the November 9 report. Views per day divides total views by days since each listing started.</p>
     </div>
+    <div class="card">
+      <h3>All nine listings</h3>
+      <p class="cap">Every listing in the comparison, by total ListTrac views. Days live counts from each listing's start to November 9.</p>
+      <div class="scroll"><table id="bench"><thead><tr><th>Listing</th><th class="r">Days live</th><th class="r">Views</th><th class="r">Views/day</th><th class="r">Shares</th><th class="r">Favorites</th></tr></thead><tbody></tbody></table></div>
+    </div>
   </section>
 
   <section id="buyers">
@@ -127,6 +132,24 @@ a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outli
         <p class="cap">Themes from showing feedback, in agents' own words.</p>
         <ul class="chips" id="liked"></ul>
       </div>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <h3>Showings by week</h3>
+        <p class="cap">Confirmed showings per week (weeks start Monday). Showings paused while the home was under contract.</p>
+        <div class="chart" id="showweekly"></div>
+      </div>
+      <div class="card">
+        <h3>Offers</h3>
+        <p class="cap">Written offers received, by date.</p>
+        <div class="split" id="offersum"></div>
+        <ol class="timeline" id="offerlist"></ol>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Showing feedback</h3>
+      <p class="cap">Responses from buyers' agents through ShowingTime, by showing date. Agent and buyer names are left out, and condition comments are summarized.</p>
+      <div class="scroll"><table id="fbt"><thead><tr><th>Showing</th><th>Brokerage</th><th>Liked</th><th>Hesitations</th><th>Next step</th></tr></thead><tbody></tbody></table></div>
     </div>
   </section>
 
@@ -176,7 +199,7 @@ a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outli
     <h2>Marketing</h2>
     <div class="grid">
       <div class="card">
-        <h3>Launch timeline</h3>
+        <h3>Timeline</h3>
         <ol class="timeline" id="timeline"></ol>
       </div>
       <div class="card">
@@ -198,9 +221,20 @@ a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outli
       </div>
       <div class="card">
         <figure>
-          <img src="floorplan.jpg" alt="Floor plan of 805 Avon Court showing three bedrooms, two baths, separate living and family rooms, dining area and kitchen" width="1500" height="1125" loading="lazy">
+          <img src="floorplan.jpg" alt="Floor plan of 805 Avon Court showing three bedrooms, two baths, separate living and family rooms, dining area and kitchen" width="1500" height="1125">
           <figcaption>Floor plan with approximate room sizes.</figcaption>
         </figure>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <h3>Listing history</h3>
+        <p class="cap">Public MLS status changes, as shown on Zillow.</p>
+        <div class="scroll"><table id="hist"><thead><tr><th>Date</th><th>Event</th><th class="r">Price</th></tr></thead><tbody></tbody></table></div>
+      </div>
+      <div class="card">
+        <h3>Value at a glance</h3>
+        <div class="scroll"><table id="value"><thead><tr><th>Measure</th><th>Value</th><th>Source</th></tr></thead><tbody></tbody></table></div>
       </div>
     </div>
   </section>
@@ -255,11 +289,42 @@ const DATA = {
     ["2026-10-07", "Featured in the Rapisarda Real Estate Daily Rap-Up. Homes.com flags it Very Popular."],
     ["2026-10-08", "Drone fly-through reel and tour video published."],
     ["2026-10-09", "Just-listed carousel on Instagram and Facebook. Homes.com flags it Hot Property."],
+    ["2026-10-10", "Second offer arrives, all cash."],
     ["2026-10-12", "First weekly ListTrac report: over a thousand views in week one."],
-    ["2026-10-21", "Second Daily Rap-Up feature."]
+    ["2026-10-19", "Fifth offer received in the first 15 days."],
+    ["2026-10-20", "Under contract."],
+    ["2026-10-21", "Second Daily Rap-Up feature."],
+    ["2026-11-02", "Back on market at $485,000."],
+    ["2026-11-07", "Three showings in one day."]
   ],
   sites: ["Zillow", "Realtor.com", "Trulia", "Redfin", "Homes.com", "MLS systems", "Agent and broker websites"],
   assets: ["Listing photos", "Floor plan", "Drone fly-through reel", "Tour video", "Social carousels", "Yard sign"],
+  bench: [
+    ["805 Avon Ct", 35, 2715, 78, 200, 4], ["800 Westgate Dr", 21, 2667, 127, 31, 3], ["248 Santa Cruz Dr", 41, 2547, 62, 463, 6],
+    ["460 Mandarin Cir", 38, 2350, 62, 235, 5], ["115 Bryce Way", 20, 2228, 111, 98, 3], ["416 Limerick Way", 27, 1769, 66, 63, 0],
+    ["608 Snapdragon St", 33, 1548, 47, 3, 0], ["133 Isle Royale Cir", 20, 1448, 72, 109, 4], ["4114 Rowland Dr", 13, 950, 73, 41, 0]
+  ],
+  showWeeks: [["2026-10-05", 11], ["2026-10-12", 5], ["2026-10-19", 0], ["2026-10-26", 0], ["2026-11-02", 5], ["2026-11-09", 2]],
+  offers: [
+    ["2026-10-09", "Financed offer"], ["2026-10-10", "All-cash offer"], ["2026-10-14", "Financed offer"],
+    ["2026-10-16", "Financed offer"], ["2026-10-19", "First-time buyers' offer"]
+  ],
+  feedback: [
+    ["2026-10-05", "Century 21 Epic", "", "Trees in the front yard", "Not ready to offer yet"],
+    ["2026-10-06", "Leyson Realty", "Clients really like the home", "", "Submitted an offer"],
+    ["2026-10-07", "Dream Home Real Estate", "Showing went well; clients interested", "", "In touch with the listing team"],
+    ["2026-10-08", "RE/MAX Gold", "Overall they really liked the home", "", "Reviewing with clients"],
+    ["2026-10-11", "eXp Realty", "", "", "Lining up financing to offer"],
+    ["2026-10-11", "Twin Oaks Real Estate", "RV access; good bones", "Parking; front trees", "Sharing with other RV buyers"],
+    ["2026-10-15", "Keller Williams Vaca Valley", "", "Too small for their family", "Not pursuing"],
+    ["2026-11-05", "eXp Realty", "Floor plan; location; lot size", "Wants updates", "Still viewing other homes"],
+    ["2026-11-07", "Rapisarda Real Estate", "Buyers love the house and property", "Budget for updates", "Not pursuing"]
+  ],
+  history: [["2026-10-05", "Listed for sale", 485000], ["2026-10-20", "Under contract", 485000], ["2026-11-02", "Back on market", 485000]],
+  value: [
+    ["List price", "$485,000", "MLS"], ["Price per sq ft", "$370", "Zillow"],
+    ["Recent nearby sales", "$495K–$588K (6 sales)", "Redfin"], ["Estimated monthly payment", "$3,245/mo", "Redfin calculator"]
+  ],
   features: [
     "Single-story living",
     "8,276 sq ft corner lot",
@@ -351,6 +416,43 @@ DATA.timeline.forEach(([d, t]) => { const li = el("li"); li.append(el("span", { 
 DATA.sites.forEach((s) => $("sites").append(el("li", {}, s)));
 DATA.assets.forEach((s) => $("assets").append(el("li", {}, s)));
 DATA.features.forEach((f) => $("features").append(el("li", {}, f)));
+
+DATA.bench.forEach(([l, d, v, vpd, sh, fav]) => {
+  const tr = el("tr"); if (l === "805 Avon Ct") tr.style.fontWeight = "600";
+  [l, fmt(d), fmt(v), fmt(vpd), fmt(sh), fmt(fav)].forEach((c, i) => tr.append(el("td", i ? { class: "r" } : {}, c)));
+  document.querySelector("#bench tbody").append(tr);
+});
+[["Offers received", DATA.offers.length], ["Days to first offer", 4]].forEach(([k, v]) => { const m = el("div", { class: "mini" }); m.append(el("span", { class: "v" }, fmt(v)), el("span", { class: "k" }, k)); $("offersum").append(m); });
+DATA.offers.forEach(([d, t]) => { const li = el("li"); li.append(el("span", { class: "when" }, day(d)), el("span", { class: "dot" }), el("span", {}, t)); $("offerlist").append(li); });
+DATA.feedback.forEach((r) => { const tr = el("tr"); r.forEach((c, i) => tr.append(el("td", i === 4 ? { class: "muted" } : {}, i === 0 ? day(c) : c))); document.querySelector("#fbt tbody").append(tr); });
+DATA.history.forEach(([d, e, pr]) => { const tr = el("tr"); tr.append(el("td", {}, day(d)), el("td", {}, e), el("td", { class: "r" }, "$" + fmt(pr))); document.querySelector("#hist tbody").append(tr); });
+DATA.value.forEach((r) => { const tr = el("tr"); r.forEach((c, i) => tr.append(el("td", i === 2 ? { class: "muted" } : {}, c))); document.querySelector("#value tbody").append(tr); });
+
+function drawBars(box, rows, label, tipFn) {
+  box.replaceChildren();
+  const W = Math.max(280, box.clientWidth), H = 220, m = { t: 20, r: 6, b: 28, l: 6 };
+  const ns = "http://www.w3.org/2000/svg";
+  const mk = (tag, a) => { const e = document.createElementNS(ns, tag); Object.entries(a).forEach(([k, v]) => e.setAttribute(k, v)); return e; };
+  const svg = mk("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": label });
+  const slot = (W - m.l - m.r) / rows.length, bw = Math.min(56, slot * 0.6), max = Math.max(1, ...rows.map((r) => r[1]));
+  const y = (v) => H - m.b - (v / max) * (H - m.t - m.b);
+  svg.append(mk("line", { x1: m.l, x2: W - m.r, y1: H - m.b, y2: H - m.b, stroke: "var(--line)" }));
+  const tip = el("div", { class: "tip" }); tip.hidden = true;
+  rows.forEach(([d, v], i) => {
+    const cx = m.l + slot * i + slot / 2;
+    if (v) svg.append(mk("rect", { x: cx - bw / 2, y: y(v), width: bw, height: H - m.b - y(v), rx: 5, fill: "var(--accent)" }));
+    const lab = mk("text", { x: cx, y: (v ? y(v) : H - m.b) - 6, "text-anchor": "middle", "font-size": 12, fill: "var(--muted)" }); lab.textContent = v ? fmt(v) : "–";
+    const tick = mk("text", { x: cx, y: H - 8, "text-anchor": "middle", "font-size": 12, fill: "var(--muted)" }); tick.textContent = day(d);
+    const hit = mk("rect", { x: m.l + slot * i, y: m.t, width: slot, height: H - m.t - m.b, fill: "transparent" });
+    hit.addEventListener("mousemove", (ev) => { const b = box.getBoundingClientRect(); tip.replaceChildren(...tipFn(d, v)); tip.hidden = false; tip.style.left = Math.min(Math.max(0, ev.clientX - b.left + 12), box.clientWidth - tip.offsetWidth) + "px"; tip.style.top = Math.max(0, ev.clientY - b.top - 50) + "px"; });
+    hit.addEventListener("mouseleave", () => { tip.hidden = true; });
+    svg.append(lab, tick, hit);
+  });
+  box.append(svg, tip);
+}
+const drawShowings = () => drawBars($("showweekly"), DATA.showWeeks, "Confirmed showings per week", (d, v) => [el("div", { class: "d" }, "Week of " + day(d)), el("div", {}, v ? `${v} showing${v > 1 ? "s" : ""}` : "No showings (under contract)")]);
+drawShowings();
+addEventListener("resize", () => { clearTimeout(window._rs); window._rs = setTimeout(drawShowings, 120); });
 
 function drawWeekly() {
   const box = $("weekly"); box.replaceChildren();

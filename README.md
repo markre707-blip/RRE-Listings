@@ -17,4 +17,4 @@ Open `index.html` in any browser (keep `floorplan.jpg` in the same folder). To p
 
 The numbers are typed into the `DATA` block at the bottom of `index.html`. Change them there and commit.
 
-This version shows showing counts and positive feedback themes only. It leaves out offers, negative feedback, agent and buyer names, and transaction details on purpose.
+This version leaves out agent and buyer names, offer prices and terms, the reason the first contract ended, and detailed condition remarks on purpose.
