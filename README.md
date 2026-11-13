@@ -4,8 +4,8 @@ A one-page public report for 805 Avon Court, Dixon, CA (MLS #326083269), listed 
 
 It covers:
 
-- Showings in the first week (ShowingTime)
-- Online activity in the first week (ListTrac)
+- Showings and online activity in the latest week
+- Showings and online activity in the first week
 - Overall totals since listing
 - How the listing compares with the team's other recent listings
 
@@ -15,4 +15,6 @@ Open `index.html` in any browser. To publish it, turn on GitHub Pages for this r
 
 ## Updating
 
-The numbers are typed into the `DATA` block at the bottom of `index.html`. Change them there and commit.
+The page loads its numbers from the public Google Sheet "RRE Public Listing Data" each time it's opened, so you don't need to edit or re-upload this file to update it. A scheduled Claude task refreshes the sheet every morning.
+
+To show a different listing from the same sheet, add `?listing=<listing_id>` to the page address.

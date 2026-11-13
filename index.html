@@ -4,34 +4,34 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>805 Avon Ct · Listing Activity</title>
-<meta name="description" content="First-week showings and online activity, overall totals and comparison for 805 Avon Court, Dixon, CA.">
+<meta name="description" content="Latest-week and first-week showings and online activity, overall totals and comparison for 805 Avon Court, Dixon, CA.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-/* Layout: one column of four sections — first-week showings, first-week online, overall, comparison */
+/* Layout: one column — latest week, first week, overall, comparison. Numbers load live from the public Google Sheet. */
 :root {
   --bg: #f6f7f4; --panel: #ffffff; --fg: #1d2420; --muted: #5d6a63; --line: #dde3de;
-  --accent: #2f6b4f; --accent-soft: #d7e8de;
+  --accent: #2f6b4f; --accent-soft: #d7e8de; --skel: #e7ebe8;
   --display: "Fraunces", Georgia, serif; --body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) { --bg: #141916; --panel: #1c231f; --fg: #e8eee9; --muted: #9aa8a0; --line: #2d3832; --accent: #7cc39c; --accent-soft: #24382d; color-scheme: dark; }
+  :root:not([data-theme="light"]) { --bg: #141916; --panel: #1c231f; --fg: #e8eee9; --muted: #9aa8a0; --line: #2d3832; --accent: #7cc39c; --accent-soft: #24382d; --skel: #26302a; color-scheme: dark; }
 }
-:root[data-theme="dark"] { --bg: #141916; --panel: #1c231f; --fg: #e8eee9; --muted: #9aa8a0; --line: #2d3832; --accent: #7cc39c; --accent-soft: #24382d; color-scheme: dark; }
+:root[data-theme="dark"] { --bg: #141916; --panel: #1c231f; --fg: #e8eee9; --muted: #9aa8a0; --line: #2d3832; --accent: #7cc39c; --accent-soft: #24382d; --skel: #26302a; color-scheme: dark; }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 15px; line-height: 1.5; }
 .wrap { max-width: 1000px; margin: 0 auto; padding-block: 36px 48px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: flex; flex-direction: column; gap: 32px; }
 header { display: flex; flex-direction: column; gap: 8px; }
-.eyebrow { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+.eyebrow { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); font-weight: 600; min-height: 1.5em; }
 h1 { font-family: var(--display); font-weight: 400; font-size: clamp(30px, 5vw, 44px); line-height: 1.1; margin: 0; }
-.facts { display: flex; flex-wrap: wrap; gap: 6px 16px; color: var(--muted); }
+.facts { display: flex; flex-wrap: wrap; gap: 6px 16px; color: var(--muted); min-height: 1.5em; }
 .facts b { color: var(--fg); font-weight: 600; }
 section { display: flex; flex-direction: column; gap: 12px; }
 h2 { font-family: var(--display); font-weight: 400; font-size: 24px; margin: 0; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
 h2 small { font-family: var(--body); font-size: 13px; color: var(--muted); }
-.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); gap: 12px; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); gap: 12px; min-height: 96px; }
 .tile { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 2px; }
 .tile .k { font-size: 13px; color: var(--muted); }
 .tile .v { font-family: var(--display); font-size: 32px; line-height: 1.15; font-variant-numeric: tabular-nums; }
@@ -40,7 +40,7 @@ h2 small { font-family: var(--body); font-size: 13px; color: var(--muted); }
 .card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 18px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
 .card h3 { margin: 0; font-size: 15px; font-weight: 600; }
 .cap { margin: 0; font-size: 13px; color: var(--muted); }
-.chart { position: relative; }
+.chart { position: relative; min-height: 190px; }
 .chart svg { display: block; width: 100%; height: auto; }
 .tip { position: absolute; pointer-events: none; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; font-size: 12px; box-shadow: 0 4px 14px rgba(0,0,0,.12); white-space: nowrap; }
 .tip .d { color: var(--muted); }
@@ -51,34 +51,54 @@ td { padding: 7px 8px; border-bottom: 1px solid var(--line); }
 .r { text-align: right; }
 tr.me td { font-weight: 600; background: var(--accent-soft); }
 tr.med td { color: var(--muted); font-style: italic; border-bottom: 0; }
+.loading .tiles, .loading .chart { background: var(--skel); border-radius: 12px; }
+.loading .tiles > *, .loading .chart > * { visibility: hidden; }
+.notice { display: none; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; color: var(--muted); }
+.failed .notice { display: block; }
 footer { border-top: 1px solid var(--line); padding-top: 16px; font-size: 13px; color: var(--muted); display: flex; flex-direction: column; gap: 4px; }
 footer b { color: var(--fg); }
 </style>
 </head>
 <body>
-<main class="wrap">
+<main class="wrap loading" id="page">
   <header>
-    <span class="eyebrow">Listing activity · as of November 13, 2026</span>
-    <h1>805 Avon Court, Dixon</h1>
-    <div class="facts"><span><b>$485,000</b></span><span>3 bed · 2 bath</span><span>1,311 sq ft</span><span>MLS #326083269</span></div>
+    <span class="eyebrow" id="asOf">Listing activity</span>
+    <h1 id="title">805 Avon Court, Dixon</h1>
+    <div class="facts" id="facts"></div>
   </header>
 
+  <p class="notice" role="status">The latest numbers couldn't load. Refresh the page to try again.</p>
+
   <section>
-    <h2>Showings: first week <small>Oct 5–11</small></h2>
-    <div class="tiles" id="showTiles"></div>
+    <h2>Showings: latest week <small id="lShowRange"></small></h2>
+    <div class="tiles" id="lShowTiles"></div>
     <div class="card">
       <h3>Showings by day</h3>
-      <div class="chart" id="showDays"></div>
+      <div class="chart" id="lShowDays"></div>
     </div>
   </section>
 
   <section>
-    <h2>Online activity: first week <small>Oct 5–12, ListTrac</small></h2>
-    <div class="tiles" id="onlineTiles"></div>
+    <h2>Online activity: latest week <small id="lOnlineRange"></small></h2>
+    <div class="tiles" id="lOnlineTiles"></div>
   </section>
 
   <section>
-    <h2>Overall <small>Oct 5 – Nov 13</small></h2>
+    <h2>Showings: first week <small id="fShowRange"></small></h2>
+    <div class="tiles" id="fShowTiles"></div>
+    <div class="card">
+      <h3>Showings by day</h3>
+      <div class="chart" id="fShowDays"></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Online activity: first week <small id="fOnlineRange"></small></h2>
+    <div class="tiles" id="fOnlineTiles"></div>
+  </section>
+
+  <section>
+    <h2>Overall <small id="overallRange"></small></h2>
     <div class="tiles" id="overallTiles"></div>
     <div class="grid">
       <div class="card">
@@ -93,7 +113,7 @@ footer b { color: var(--fg); }
   </section>
 
   <section>
-    <h2>Compared with other listings <small>Team listings started Sep 29 – Oct 27</small></h2>
+    <h2>Compared with other listings <small>Team listings, ListTrac</small></h2>
     <div class="card">
       <div class="scroll">
         <table id="bench">
@@ -101,7 +121,7 @@ footer b { color: var(--fg); }
           <tbody></tbody>
         </table>
       </div>
-      <p class="cap">ListTrac reports. First week = start to first weekly report. Totals as of Nov 9.</p>
+      <p class="cap" id="benchCap">First week = start to first weekly report.</p>
     </div>
   </section>
 
@@ -112,67 +132,47 @@ footer b { color: var(--fg); }
 </main>
 
 <script>
-const DATA = {
-  firstWeekShowings: [["2026-10-05", 1], ["2026-10-06", 4], ["2026-10-07", 1], ["2026-10-08", 2], ["2026-10-09", 0], ["2026-10-10", 0], ["2026-10-11", 3]],
-  firstWeekOnline: { views: 1110, shares: 81, favorites: 1, zillowViews: 648, topCity: "Sacramento, CA" },
-  overall: { days: 39, views: 2715, shares: 200, saves: 87, showings: 23, socialViews: 2274 },
-  weekly: [["2026-10-12", 1056], ["2026-10-19", 582], ["2026-10-26", 292], ["2026-11-02", 40], ["2026-11-09", 359]],
-  showWeeks: [["2026-10-05", 11], ["2026-10-12", 5], ["2026-10-19", 0], ["2026-10-26", 0], ["2026-11-02", 5], ["2026-11-09", 2]],
-  // listing, first-report views, days to first report, total views (Nov 9), days live (Nov 9), shares
-  bench: [
-    ["805 Avon Ct", 1110, 7, 2715, 35, 200], ["800 Westgate Dr", 1536, 7, 2667, 21, 31], ["248 Santa Cruz Dr", 971, 6, 2547, 41, 463],
-    ["460 Mandarin Cir", 1071, 10, 2350, 38, 235], ["115 Bryce Way", 939, 6, 2228, 20, 98], ["416 Limerick Way", 851, 6, 1769, 27, 63],
-    ["608 Snapdragon St", 825, 5, 1548, 33, 3], ["133 Isle Royale Cir", 680, 6, 1448, 20, 109], ["4114 Rowland Dr", 576, 6, 950, 13, 41]
-  ]
-};
+// Public data source: "RRE Public Listing Data" Google Sheet (anyone with the link can view).
+const SHEET_ID = "1pdHrXKU3rXPxyrzJ6cIyKRycsrrXdXzJgA77v0cvSQM";
+const LISTING_ID = new URLSearchParams(location.search).get("listing") || "805-avon";
 
-const fmt = (n) => n == null ? "" : Math.round(n).toLocaleString("en-US");
-const day = (s, o = { month: "short", day: "numeric" }) => new Date(s + "T00:00:00Z").toLocaleDateString("en-US", { ...o, timeZone: "UTC" });
+const fmt = (n) => n == null || Number.isNaN(n) ? "–" : Math.round(n).toLocaleString("en-US");
+const D = (s) => new Date(s + "T00:00:00Z");
+const iso = (d) => d.toISOString().slice(0, 10);
+const addDays = (s, n) => { const d = D(s); d.setUTCDate(d.getUTCDate() + n); return iso(d); };
+const daysBetween = (a, b) => Math.round((D(b) - D(a)) / 864e5);
+const day = (s, o = { month: "short", day: "numeric" }) => D(s).toLocaleDateString("en-US", { ...o, timeZone: "UTC" });
+const range = (a, b) => `${day(a)} – ${day(b)}`;
 const el = (tag, attrs = {}, text) => { const e = document.createElement(tag); Object.entries(attrs).forEach(([k, v]) => e.setAttribute(k, v)); if (text != null) e.textContent = text; return e; };
 const $ = (id) => document.getElementById(id);
 const tile = (host, k, v, n) => { const t = el("div", { class: "tile" }); t.append(el("span", { class: "k" }, k), el("span", { class: "v" }, v)); if (n) t.append(el("span", { class: "n" }, n)); $(host).append(t); };
+const plural = (n, w) => `${fmt(n)} ${w}${n === 1 ? "" : "s"}`;
 
-// Showings, first week
-const fw = DATA.firstWeekShowings;
-const busiest = fw.reduce((a, b) => (b[1] > a[1] ? b : a));
-tile("showTiles", "Showings", fmt(fw.reduce((s, d) => s + d[1], 0)));
-tile("showTiles", "Busiest day", day(busiest[0], { weekday: "short", month: "short", day: "numeric" }), `${busiest[1]} showings`);
-tile("showTiles", "Days with showings", `${fw.filter((d) => d[1]).length} of 7`);
+function parseCSV(text) {
+  const rows = []; let row = [], cell = "", q = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (q) { if (c === '"' && text[i + 1] === '"') { cell += '"'; i++; } else if (c === '"') q = false; else cell += c; }
+    else if (c === '"') q = true;
+    else if (c === ",") { row.push(cell); cell = ""; }
+    else if (c === "\n") { row.push(cell); rows.push(row); row = []; cell = ""; }
+    else if (c !== "\r") cell += c;
+  }
+  if (cell || row.length) { row.push(cell); rows.push(row); }
+  const head = rows.shift() || [];
+  const cols = head.map((h, i) => [h.trim(), i]).filter(([h]) => h);
+  return rows.filter((r) => r.some((c) => c.trim())).map((r) => Object.fromEntries(cols.map(([h, i]) => [h, (r[i] || "").trim()])));
+}
+async function tab(name) {
+  const r = await fetch(`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(name)}&_=${Date.now()}`, { cache: "no-store" });
+  if (!r.ok) throw new Error(name + " " + r.status);
+  return parseCSV(await r.text());
+}
+const num = (v) => (v === "" || v == null ? null : Number(String(v).replace(/,/g, "")));
 
-// Online, first week
-const fo = DATA.firstWeekOnline;
-tile("onlineTiles", "Online views", fmt(fo.views));
-tile("onlineTiles", "Zillow views", fmt(fo.zillowViews));
-tile("onlineTiles", "Shares", fmt(fo.shares));
-tile("onlineTiles", "Favorites", fmt(fo.favorites));
-tile("onlineTiles", "Top viewer city", fo.topCity.split(",")[0], "California");
-
-// Overall
-const o = DATA.overall;
-tile("overallTiles", "Days online", fmt(o.days));
-tile("overallTiles", "Online views", fmt(o.views));
-tile("overallTiles", "Shares", fmt(o.shares));
-tile("overallTiles", "Saves", fmt(o.saves), "Zillow + Redfin");
-tile("overallTiles", "Showings", fmt(o.showings));
-tile("overallTiles", "Social views", fmt(o.socialViews));
-
-// Comparison
-const rows = DATA.bench.map(([l, fv, fd, tv, td, sh]) => ({ l, first: fv / fd, total: tv, perDay: tv / td, sh })).sort((a, b) => b.total - a.total);
-const tb = document.querySelector("#bench tbody");
-rows.forEach((r) => {
-  const tr = el("tr", r.l === "805 Avon Ct" ? { class: "me" } : {});
-  tr.append(el("td", {}, r.l), el("td", { class: "r" }, fmt(r.first)), el("td", { class: "r" }, fmt(r.total)), el("td", { class: "r" }, fmt(r.perDay)), el("td", { class: "r" }, fmt(r.sh)));
-  tb.append(tr);
-});
-const others = rows.filter((r) => r.l !== "805 Avon Ct");
-const median = (k) => { const v = others.map((r) => r[k]).sort((a, b) => a - b); const m = v.length / 2; return v.length % 2 ? v[Math.floor(m)] : (v[m - 1] + v[m]) / 2; };
-const mtr = el("tr", { class: "med" });
-mtr.append(el("td", {}, "Median of other listings"), el("td", { class: "r" }, fmt(median("first"))), el("td", { class: "r" }, fmt(median("total"))), el("td", { class: "r" }, fmt(median("perDay"))), el("td", { class: "r" }, fmt(median("sh"))));
-tb.append(mtr);
-
-// Charts
 function drawBars(box, data, label, tickFn, tipFn) {
   box.replaceChildren();
+  if (!data.length) return;
   const W = Math.max(280, box.clientWidth), H = 190, m = { t: 20, r: 6, b: 26, l: 6 };
   const ns = "http://www.w3.org/2000/svg";
   const mk = (tag, a) => { const e = document.createElementNS(ns, tag); Object.entries(a).forEach(([k, v]) => e.setAttribute(k, v)); return e; };
@@ -181,26 +181,119 @@ function drawBars(box, data, label, tickFn, tipFn) {
   const y = (v) => H - m.b - (v / max) * (H - m.t - m.b);
   svg.append(mk("line", { x1: m.l, x2: W - m.r, y1: H - m.b, y2: H - m.b, stroke: "var(--line)" }));
   const tip = el("div", { class: "tip" }); tip.hidden = true;
+  const every = Math.max(1, Math.ceil(data.length * 46 / (W - m.l - m.r)));
   data.forEach(([d, v], i) => {
     const cx = m.l + slot * i + slot / 2;
     if (v) svg.append(mk("rect", { x: cx - bw / 2, y: y(v), width: bw, height: H - m.b - y(v), rx: 5, fill: "var(--accent)" }));
-    const lab = mk("text", { x: cx, y: (v ? y(v) : H - m.b) - 6, "text-anchor": "middle", "font-size": 12, fill: "var(--muted)" }); lab.textContent = v ? fmt(v) : "0";
-    const tick = mk("text", { x: cx, y: H - 7, "text-anchor": "middle", "font-size": 12, fill: "var(--muted)" }); tick.textContent = tickFn(d);
+    const lab = mk("text", { x: cx, y: (v ? y(v) : H - m.b) - 6, "text-anchor": "middle", "font-size": 12, fill: "var(--muted)" }); lab.textContent = fmt(v);
+    svg.append(lab);
+    if (i % every === 0) { const tick = mk("text", { x: cx, y: H - 7, "text-anchor": "middle", "font-size": 12, fill: "var(--muted)" }); tick.textContent = tickFn(d); svg.append(tick); }
     const hit = mk("rect", { x: m.l + slot * i, y: m.t, width: slot, height: H - m.t - m.b, fill: "transparent" });
     hit.addEventListener("mousemove", (ev) => { const b = box.getBoundingClientRect(); tip.replaceChildren(...tipFn(d, v)); tip.hidden = false; tip.style.left = Math.min(Math.max(0, ev.clientX - b.left + 12), box.clientWidth - tip.offsetWidth) + "px"; tip.style.top = Math.max(0, ev.clientY - b.top - 46) + "px"; });
     hit.addEventListener("mouseleave", () => { tip.hidden = true; });
-    svg.append(lab, tick, hit);
+    svg.append(hit);
   });
   box.append(svg, tip);
 }
-const plural = (n, w) => `${fmt(n)} ${w}${n === 1 ? "" : "s"}`;
-const draw = () => {
-  drawBars($("showDays"), DATA.firstWeekShowings, "Showings by day in the first week", (d) => day(d, { weekday: "short" }), (d, v) => [el("div", { class: "d" }, day(d, { weekday: "short", month: "short", day: "numeric" })), el("div", {}, plural(v, "showing"))]);
-  drawBars($("viewsWeekly"), DATA.weekly, "Online views per week", (d) => day(d), (d, v) => [el("div", { class: "d" }, "Week ending " + day(d)), el("div", {}, plural(v, "view"))]);
-  drawBars($("showWeekly"), DATA.showWeeks, "Showings per week", (d) => day(d), (d, v) => [el("div", { class: "d" }, "Week of " + day(d)), el("div", {}, plural(v, "showing"))]);
-};
-draw();
-let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(draw, 120); });
+
+async function main() {
+  const [listings, showings, weekly, overall, comparison] = await Promise.all(["Listings", "Showings", "Online_Weekly", "Overall", "Comparison"].map(tab));
+  const L = listings.find((r) => r.listing_id === LISTING_ID);
+  if (!L) throw new Error("listing not found");
+  const asOf = L.as_of, start = L.list_date;
+
+  document.title = `${L.address.replace(/ Court$/, " Ct")} · Listing Activity`;
+  $("asOf").textContent = `Listing activity · updated ${D(asOf).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" })}`;
+  $("title").textContent = `${L.address}, ${L.city}`;
+  const facts = [["$" + fmt(num(L.list_price)), true], [`${L.beds} bed · ${L.baths} bath`], [`${fmt(num(L.sqft))} sq ft`], [`MLS #${L.mls}`]];
+  facts.forEach(([t, b]) => { const s = el("span"); if (b) s.append(el("b", {}, t)); else s.textContent = t; $("facts").append(s); });
+
+  // Daily showings map
+  const byDay = new Map();
+  showings.filter((r) => r.listing_id === LISTING_ID).forEach((r) => byDay.set(r.date, (byDay.get(r.date) || 0) + (num(r.showings) || 0)));
+  const week = (from) => Array.from({ length: 7 }, (_, i) => { const d = addDays(from, i); return [d, byDay.get(d) || 0]; });
+  const showingTiles = (host, wk) => {
+    const busiest = wk.reduce((a, b) => (b[1] > a[1] ? b : a));
+    tile(host, "Showings", fmt(wk.reduce((s, d) => s + d[1], 0)));
+    tile(host, "Busiest day", busiest[1] ? day(busiest[0], { weekday: "short", month: "short", day: "numeric" }) : "–", busiest[1] ? plural(busiest[1], "showing") : "No showings");
+    tile(host, "Days with showings", `${wk.filter((d) => d[1]).length} of 7`);
+  };
+  const latestWk = week(addDays(asOf, -6)), firstWk = week(start);
+  $("lShowRange").textContent = range(latestWk[0][0], asOf);
+  $("fShowRange").textContent = range(start, firstWk[6][0]);
+  showingTiles("lShowTiles", latestWk);
+  showingTiles("fShowTiles", firstWk);
+
+  // Online weekly
+  const W = weekly.filter((r) => r.listing_id === LISTING_ID).sort((a, b) => a.report_date.localeCompare(b.report_date));
+  const city = (c) => (c || "–").split(",")[0];
+  if (W.length) {
+    const last = W[W.length - 1], prev = W[W.length - 2], first = W[0];
+    $("lOnlineRange").textContent = `${range(addDays(last.report_date, -7), last.report_date)}, ListTrac`;
+    tile("lOnlineTiles", "Online views", fmt(num(last.views_7d)));
+    tile("lOnlineTiles", "Zillow views", fmt(num(last.zillow_views_7d)));
+    tile("lOnlineTiles", "New shares", "+" + fmt(num(last.shares_total) - (prev ? num(prev.shares_total) : 0)));
+    tile("lOnlineTiles", "New favorites", "+" + fmt(num(last.favorites_total) - (prev ? num(prev.favorites_total) : 0)));
+    tile("lOnlineTiles", "Top viewer city", city(last.top_city), (last.top_city || "").split(",")[1]?.trim() === "CA" ? "California" : "");
+    $("fOnlineRange").textContent = `${range(start, first.report_date)}, ListTrac`;
+    tile("fOnlineTiles", "Online views", fmt(num(first.views_total)));
+    tile("fOnlineTiles", "Zillow views", fmt(num(first.zillow_views_7d)));
+    tile("fOnlineTiles", "Shares", fmt(num(first.shares_total)));
+    tile("fOnlineTiles", "Favorites", fmt(num(first.favorites_total)));
+    tile("fOnlineTiles", "Top viewer city", city(first.top_city), (first.top_city || "").split(",")[1]?.trim() === "CA" ? "California" : "");
+  }
+
+  // Overall
+  const O = overall.find((r) => r.listing_id === LISTING_ID) || {};
+  const lastW = W[W.length - 1] || {};
+  $("overallRange").textContent = range(start, asOf);
+  tile("overallTiles", "Days online", fmt(daysBetween(start, asOf)));
+  tile("overallTiles", "Online views", fmt(num(lastW.views_total)));
+  tile("overallTiles", "Shares", fmt(num(lastW.shares_total)));
+  tile("overallTiles", "Saves", fmt((num(O.zillow_saves) || 0) + (num(O.redfin_saves) || 0)), "Zillow + Redfin");
+  tile("overallTiles", "Showings", fmt([...byDay.values()].reduce((a, b) => a + b, 0)));
+  tile("overallTiles", "Social views", fmt(num(O.social_views)));
+
+  // Weekly series
+  const viewsWeekly = W.map((r) => [r.report_date, num(r.views_7d) || 0]);
+  const monday = (s) => { const d = D(s); d.setUTCDate(d.getUTCDate() - ((d.getUTCDay() + 6) % 7)); return iso(d); };
+  const showWeekly = [];
+  for (let wk = monday(start); wk <= asOf; wk = addDays(wk, 7)) showWeekly.push([wk, week(wk).reduce((s, d) => s + d[1], 0)]);
+
+  // Comparison
+  const key = (a) => a.split(" ").slice(0, 2).join(" ").toLowerCase();
+  const rows = comparison.map((r) => {
+    const fd = Math.max(1, daysBetween(r.start_date, r.first_report_date)), td = Math.max(1, daysBetween(r.start_date, r.latest_report_date));
+    return { l: r.address, me: key(r.address) === key(L.address), first: num(r.first_report_views) / fd, total: num(r.total_views), perDay: num(r.total_views) / td, sh: num(r.shares), asOf: r.latest_report_date };
+  }).sort((a, b) => b.total - a.total);
+  const tb = document.querySelector("#bench tbody");
+  rows.forEach((r) => {
+    const tr = el("tr", r.me ? { class: "me" } : {});
+    tr.append(el("td", {}, r.l), el("td", { class: "r" }, fmt(r.first)), el("td", { class: "r" }, fmt(r.total)), el("td", { class: "r" }, fmt(r.perDay)), el("td", { class: "r" }, fmt(r.sh)));
+    tb.append(tr);
+  });
+  const others = rows.filter((r) => !r.me);
+  if (others.length) {
+    const median = (k) => { const v = others.map((r) => r[k]).sort((a, b) => a - b); const m = v.length / 2; return v.length % 2 ? v[Math.floor(m)] : (v[m - 1] + v[m]) / 2; };
+    const mtr = el("tr", { class: "med" });
+    mtr.append(el("td", {}, "Median of other listings"), el("td", { class: "r" }, fmt(median("first"))), el("td", { class: "r" }, fmt(median("total"))), el("td", { class: "r" }, fmt(median("perDay"))), el("td", { class: "r" }, fmt(median("sh"))));
+    tb.append(mtr);
+    const latest = rows.map((r) => r.asOf).sort().pop();
+    $("benchCap").textContent = `First week = start to first weekly report. Totals as of ${day(latest)}.`;
+  }
+
+  const draw = () => {
+    drawBars($("lShowDays"), latestWk, "Showings by day in the latest week", (d) => day(d, { weekday: "short" }), (d, v) => [el("div", { class: "d" }, day(d, { weekday: "short", month: "short", day: "numeric" })), el("div", {}, plural(v, "showing"))]);
+    drawBars($("fShowDays"), firstWk, "Showings by day in the first week", (d) => day(d, { weekday: "short" }), (d, v) => [el("div", { class: "d" }, day(d, { weekday: "short", month: "short", day: "numeric" })), el("div", {}, plural(v, "showing"))]);
+    drawBars($("viewsWeekly"), viewsWeekly, "Online views per week", (d) => day(d), (d, v) => [el("div", { class: "d" }, "Week ending " + day(d)), el("div", {}, plural(v, "view"))]);
+    drawBars($("showWeekly"), showWeekly, "Showings per week", (d) => day(d), (d, v) => [el("div", { class: "d" }, "Week of " + day(d)), el("div", {}, plural(v, "showing"))]);
+  };
+  $("page").classList.remove("loading");
+  draw();
+  let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(draw, 120); });
+}
+
+main().catch((e) => { console.error(e); $("page").classList.remove("loading"); $("page").classList.add("failed"); });
 </script>
 </body>
 </html>
