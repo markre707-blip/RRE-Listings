@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-/* Layout: one column — latest week, first week, overall, comparison. Numbers load live from the public Google Sheet. */
+/* Layout: one column — latest week, overall summary, first week, comparison. Numbers load live from the public Google Sheet. */
 :root {
   --bg: #f6f7f4; --panel: #ffffff; --fg: #1d2420; --muted: #5d6a63; --line: #dde3de;
   --accent: #2f6b4f; --accent-soft: #d7e8de; --skel: #e7ebe8;
@@ -84,20 +84,6 @@ footer b { color: var(--fg); }
   </section>
 
   <section>
-    <h2>Showings: first week <small id="fShowRange"></small></h2>
-    <div class="tiles" id="fShowTiles"></div>
-    <div class="card">
-      <h3>Showings by day</h3>
-      <div class="chart" id="fShowDays"></div>
-    </div>
-  </section>
-
-  <section>
-    <h2>Online activity: first week <small id="fOnlineRange"></small></h2>
-    <div class="tiles" id="fOnlineTiles"></div>
-  </section>
-
-  <section>
     <h2>Overall <small id="overallRange"></small></h2>
     <div class="tiles" id="overallTiles"></div>
     <div class="grid">
@@ -110,6 +96,20 @@ footer b { color: var(--fg); }
         <div class="chart" id="showWeekly"></div>
       </div>
     </div>
+  </section>
+
+  <section>
+    <h2>Showings: first week <small id="fShowRange"></small></h2>
+    <div class="tiles" id="fShowTiles"></div>
+    <div class="card">
+      <h3>Showings by day</h3>
+      <div class="chart" id="fShowDays"></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Online activity: first week <small id="fOnlineRange"></small></h2>
+    <div class="tiles" id="fOnlineTiles"></div>
   </section>
 
   <section>
