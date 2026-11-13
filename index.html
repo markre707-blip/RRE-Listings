@@ -145,7 +145,7 @@ tile("onlineTiles", "Online views", fmt(fo.views));
 tile("onlineTiles", "Zillow views", fmt(fo.zillowViews));
 tile("onlineTiles", "Shares", fmt(fo.shares));
 tile("onlineTiles", "Favorites", fmt(fo.favorites));
-tile("onlineTiles", "Top viewer city", fo.topCity);
+tile("onlineTiles", "Top viewer city", fo.topCity.split(",")[0], "California");
 
 // Overall
 const o = DATA.overall;
