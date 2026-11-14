@@ -57,6 +57,11 @@ tr.med td { color: var(--muted); font-style: italic; border-bottom: 0; }
 .failed .notice { display: block; }
 footer { border-top: 1px solid var(--line); padding-top: 16px; font-size: 13px; color: var(--muted); display: flex; flex-direction: column; gap: 4px; }
 footer b { color: var(--fg); }
+.dir { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.dir li { display: flex; justify-content: space-between; gap: 12px; padding: 14px 4px; border-bottom: 1px solid var(--line); }
+.dir a { color: var(--fg); font-weight: 600; text-decoration: none; }
+.dir a:hover { text-decoration: underline; }
+.dir span { color: var(--muted); font-size: 14px; white-space: nowrap; }
 </style>
 </head>
 <body>
@@ -199,10 +204,34 @@ function drawBars(box, data, label, tickFn, tipFn) {
   box.append(svg, tip);
 }
 
+// No listing in the address: show a list of current listings to pick from.
+function showDirectory(listings) {
+  const page = $("page");
+  page.querySelectorAll("section").forEach((s) => s.remove());
+  document.title = "Current Listings · Rapisarda Real Estate";
+  $("asOf").textContent = "Rapisarda Real Estate";
+  $("title").textContent = "Current listings";
+  const ul = document.createElement("ul");
+  ul.className = "dir";
+  listings.filter((r) => r.status !== "Sold" && r.address)
+    .sort((a, b) => (a.city || "").localeCompare(b.city || "") || a.address.localeCompare(b.address))
+    .forEach((r) => {
+      const li = document.createElement("li"), a = document.createElement("a");
+      a.href = `?listing=${encodeURIComponent(r.listing_id)}`;
+      a.textContent = r.address;
+      const meta = document.createElement("span");
+      meta.textContent = [r.city, r.status && r.status !== "Active" ? r.status : ""].filter(Boolean).join(" · ");
+      li.append(a, meta);
+      ul.append(li);
+    });
+  page.querySelector("header").after(ul);
+  page.classList.remove("loading");
+}
+
 async function main() {
   const [listings, showings, weekly, overall, comparison] = await Promise.all(["Listings", "Showings", "Online_Weekly", "Overall", "Comparison"].map(tab));
-  const L = listings.find((r) => PARAM_ID ? r.listing_id === PARAM_ID : (r.repo || "").toLowerCase() === REPO)
-    || listings.find((r) => r.listing_id === "805-avon");
+  const L = listings.find((r) => PARAM_ID ? r.listing_id === PARAM_ID : (r.repo || "").toLowerCase() === REPO);
+  if (!L && !PARAM_ID) return showDirectory(listings);
   LISTING_ID = L && L.listing_id;
   if (!L) throw new Error("listing not found");
   const asOf = L.as_of, start = L.list_date;
