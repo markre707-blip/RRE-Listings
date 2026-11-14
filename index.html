@@ -234,7 +234,11 @@ async function main() {
   if (!L && !PARAM_ID) return showDirectory(listings);
   LISTING_ID = L && L.listing_id;
   if (!L) throw new Error("listing not found");
-  const asOf = L.as_of, start = L.list_date;
+  const asOf = L.as_of;
+  // If the list date is blank, start from the earliest showing or ListTrac report, else 30 days back.
+  const known = [...showings.filter((r) => r.listing_id === L.listing_id).map((r) => r.date),
+    ...weekly.filter((r) => r.listing_id === L.listing_id).map((r) => addDays(r.report_date, -7))].filter(Boolean).sort();
+  const start = L.list_date || known[0] || addDays(asOf, -30);
 
   document.title = `${L.address} · Listing Activity`;
   $("asOf").textContent = `Listing activity · updated ${D(asOf).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" })}`;
@@ -253,6 +257,9 @@ async function main() {
     tile(host, "Busiest day", busiest[1] ? day(busiest[0], { weekday: "short", month: "short", day: "numeric" }) : "–", busiest[1] ? plural(busiest[1], "showing") : "No showings");
     tile(host, "Days with showings", `${wk.filter((d) => d[1]).length} of 7`);
   };
+  // Remove anything with no data behind it.
+  const drop = (id, up = "section") => { const n = $(id); const box = n && n.closest(up); if (box) box.remove(); };
+  const hasShowings = byDay.size > 0;
   const latestWk = week(addDays(asOf, -6)), firstWk = week(start);
   $("lShowRange").textContent = range(latestWk[0][0], asOf);
   $("fShowRange").textContent = range(start, firstWk[6][0]);
@@ -263,18 +270,18 @@ async function main() {
   const W = weekly.filter((r) => r.listing_id === LISTING_ID).sort((a, b) => a.report_date.localeCompare(b.report_date));
   const city = (c) => (c || "–").split(",")[0];
   if (!W.length) {
-    ["lOnlineTiles", "fOnlineTiles"].forEach((h) => tile(h, "Online views", "–", "No ListTrac reports yet"));
+    drop("lOnlineTiles"); drop("fOnlineTiles"); drop("viewsWeekly", ".card"); drop("bench");
   } else {
     const last = W[W.length - 1], prev = W[W.length - 2], first = W[0];
     $("lOnlineRange").textContent = `${range(addDays(last.report_date, -7), last.report_date)}, ListTrac`;
     tile("lOnlineTiles", "Online views", fmt(num(last.views_7d)));
-    tile("lOnlineTiles", "Zillow views", fmt(num(last.zillow_views_7d)));
+    if (num(last.zillow_views_7d) != null) tile("lOnlineTiles", "Zillow views", fmt(num(last.zillow_views_7d)));
     tile("lOnlineTiles", "New shares", "+" + fmt(num(last.shares_total) - (prev ? num(prev.shares_total) : 0)));
     tile("lOnlineTiles", "New favorites", "+" + fmt(num(last.favorites_total) - (prev ? num(prev.favorites_total) : 0)));
     tile("lOnlineTiles", "Top viewer city", city(last.top_city), (last.top_city || "").split(",")[1]?.trim() === "CA" ? "California" : "");
     $("fOnlineRange").textContent = `${range(start, first.report_date)}, ListTrac`;
     tile("fOnlineTiles", "Online views", fmt(num(first.views_total)));
-    tile("fOnlineTiles", "Zillow views", fmt(num(first.zillow_views_7d)));
+    if (num(first.zillow_views_7d) != null) tile("fOnlineTiles", "Zillow views", fmt(num(first.zillow_views_7d)));
     tile("fOnlineTiles", "Shares", fmt(num(first.shares_total)));
     tile("fOnlineTiles", "Favorites", fmt(num(first.favorites_total)));
     tile("fOnlineTiles", "Top viewer city", city(first.top_city), (first.top_city || "").split(",")[1]?.trim() === "CA" ? "California" : "");
@@ -285,12 +292,15 @@ async function main() {
   const lastW = W[W.length - 1] || {};
   $("overallRange").textContent = range(start, asOf);
   tile("overallTiles", "Days online", fmt(daysBetween(start, asOf)));
-  tile("overallTiles", "Online views", fmt(num(lastW.views_total)));
-  tile("overallTiles", "Shares", fmt(num(lastW.shares_total)));
+  if (W.length) {
+    tile("overallTiles", "Online views", fmt(num(lastW.views_total)));
+    tile("overallTiles", "Shares", fmt(num(lastW.shares_total)));
+  }
   const zs = num(O.zillow_saves), rs = num(O.redfin_saves);
-  tile("overallTiles", "Saves", zs == null && rs == null ? "–" : fmt((zs || 0) + (rs || 0)), "Zillow + Redfin");
-  tile("overallTiles", "Showings", fmt([...byDay.values()].reduce((a, b) => a + b, 0)));
-  tile("overallTiles", "Social views", fmt(num(O.social_views)));
+  if (zs != null || rs != null) tile("overallTiles", "Saves", fmt((zs || 0) + (rs || 0)), "Zillow + Redfin");
+  if (hasShowings) tile("overallTiles", "Showings", fmt([...byDay.values()].reduce((a, b) => a + b, 0)));
+  if (num(O.social_views)) tile("overallTiles", "Social views", fmt(num(O.social_views)));
+  if (!hasShowings) { drop("lShowTiles"); drop("fShowTiles"); drop("showWeekly", ".card"); }
 
   // Weekly series
   const viewsWeekly = W.map((r) => [r.report_date, num(r.views_7d) || 0]);
@@ -304,7 +314,7 @@ async function main() {
     const fd = Math.max(1, daysBetween(r.start_date, r.first_report_date)), td = Math.max(1, daysBetween(r.start_date, r.latest_report_date));
     return { l: r.address, me: key(r.address) === key(L.address), first: num(r.first_report_views) / fd, total: num(r.total_views), perDay: num(r.total_views) / td, sh: num(r.shares), asOf: r.latest_report_date };
   }).sort((a, b) => b.total - a.total);
-  const tb = document.querySelector("#bench tbody");
+  const tb = document.querySelector("#bench tbody") || el("tbody");
   rows.forEach((r) => {
     const tr = el("tr", r.me ? { class: "me" } : {});
     tr.append(el("td", {}, r.l), el("td", { class: "r" }, fmt(r.first)), el("td", { class: "r" }, fmt(r.total)), el("td", { class: "r" }, fmt(r.perDay)), el("td", { class: "r" }, fmt(r.sh)));
@@ -317,14 +327,17 @@ async function main() {
     mtr.append(el("td", {}, "Median of other listings"), el("td", { class: "r" }, fmt(median("first"))), el("td", { class: "r" }, fmt(median("total"))), el("td", { class: "r" }, fmt(median("perDay"))), el("td", { class: "r" }, fmt(median("sh"))));
     tb.append(mtr);
     const latest = rows.map((r) => r.asOf).sort().pop();
-    $("benchCap").textContent = `First week = start to first weekly report. Totals as of ${day(latest)}.`;
+    if ($("benchCap")) $("benchCap").textContent = `First week = start to first weekly report. Totals as of ${day(latest)}.`;
   }
 
+  // Overall section: drop it entirely if only "Days online" is left and no charts remain.
+  if ($("overallTiles").children.length <= 1 && !$("viewsWeekly") && !$("showWeekly")) drop("overallTiles");
+  const bars = (id, ...a) => { if ($(id)) drawBars($(id), ...a); };
   const draw = () => {
-    drawBars($("lShowDays"), latestWk, "Showings by day in the latest week", (d) => day(d, { weekday: "short" }), (d, v) => [el("div", { class: "d" }, day(d, { weekday: "short", month: "short", day: "numeric" })), el("div", {}, plural(v, "showing"))]);
-    drawBars($("fShowDays"), firstWk, "Showings by day in the first week", (d) => day(d, { weekday: "short" }), (d, v) => [el("div", { class: "d" }, day(d, { weekday: "short", month: "short", day: "numeric" })), el("div", {}, plural(v, "showing"))]);
-    drawBars($("viewsWeekly"), viewsWeekly, "Online views per week", (d) => day(d), (d, v) => [el("div", { class: "d" }, "Week ending " + day(d)), el("div", {}, plural(v, "view"))]);
-    drawBars($("showWeekly"), showWeekly, "Showings per week", (d) => day(d), (d, v) => [el("div", { class: "d" }, "Week of " + day(d)), el("div", {}, plural(v, "showing"))]);
+    bars("lShowDays", latestWk, "Showings by day in the latest week", (d) => day(d, { weekday: "short" }), (d, v) => [el("div", { class: "d" }, day(d, { weekday: "short", month: "short", day: "numeric" })), el("div", {}, plural(v, "showing"))]);
+    bars("fShowDays", firstWk, "Showings by day in the first week", (d) => day(d, { weekday: "short" }), (d, v) => [el("div", { class: "d" }, day(d, { weekday: "short", month: "short", day: "numeric" })), el("div", {}, plural(v, "showing"))]);
+    bars("viewsWeekly", viewsWeekly, "Online views per week", (d) => day(d), (d, v) => [el("div", { class: "d" }, "Week ending " + day(d)), el("div", {}, plural(v, "view"))]);
+    bars("showWeekly", showWeekly, "Showings per week", (d) => day(d), (d, v) => [el("div", { class: "d" }, "Week of " + day(d)), el("div", {}, plural(v, "showing"))]);
   };
   $("page").classList.remove("loading");
   draw();
