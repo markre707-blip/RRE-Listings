@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>805 Avon Ct · Listing Activity</title>
-<meta name="description" content="Latest-week and first-week showings and online activity, overall totals and comparison for 805 Avon Court, Dixon, CA.">
+<title>Listing Activity · Rapisarda Real Estate</title>
+<meta name="description" content="Weekly showings, online activity and comparison for a Rapisarda Real Estate listing.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -63,7 +63,7 @@ footer b { color: var(--fg); }
 <main class="wrap loading" id="page">
   <header>
     <span class="eyebrow" id="asOf">Listing activity</span>
-    <h1 id="title">805 Avon Court, Dixon</h1>
+    <h1 id="title">&nbsp;</h1>
     <div class="facts" id="facts"></div>
   </header>
 
@@ -134,7 +134,10 @@ footer b { color: var(--fg); }
 <script>
 // Public data source: "RRE Public Listing Data" Google Sheet (anyone with the link can view).
 const SHEET_ID = "1pdHrXKU3rXPxyrzJ6cIyKRycsrrXdXzJgA77v0cvSQM";
-const LISTING_ID = new URLSearchParams(location.search).get("listing") || "805-avon";
+// Which listing: ?listing=<listing_id>, else the GitHub repo name in the address (e.g. /805AvonCt/), else 805 Avon.
+const PARAM_ID = new URLSearchParams(location.search).get("listing");
+const REPO = (location.pathname.split("/").filter(Boolean)[0] || "").toLowerCase();
+let LISTING_ID = PARAM_ID || "";
 
 const fmt = (n) => n == null || Number.isNaN(n) ? "–" : Math.round(n).toLocaleString("en-US");
 const D = (s) => new Date(s + "T00:00:00Z");
@@ -198,14 +201,17 @@ function drawBars(box, data, label, tickFn, tipFn) {
 
 async function main() {
   const [listings, showings, weekly, overall, comparison] = await Promise.all(["Listings", "Showings", "Online_Weekly", "Overall", "Comparison"].map(tab));
-  const L = listings.find((r) => r.listing_id === LISTING_ID);
+  const L = listings.find((r) => PARAM_ID ? r.listing_id === PARAM_ID : (r.repo || "").toLowerCase() === REPO)
+    || listings.find((r) => r.listing_id === "805-avon");
+  LISTING_ID = L && L.listing_id;
   if (!L) throw new Error("listing not found");
   const asOf = L.as_of, start = L.list_date;
 
-  document.title = `${L.address.replace(/ Court$/, " Ct")} · Listing Activity`;
+  document.title = `${L.address} · Listing Activity`;
   $("asOf").textContent = `Listing activity · updated ${D(asOf).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" })}`;
   $("title").textContent = `${L.address}, ${L.city}`;
-  const facts = [["$" + fmt(num(L.list_price)), true], [`${L.beds} bed · ${L.baths} bath`], [`${fmt(num(L.sqft))} sq ft`], [`MLS #${L.mls}`]];
+  const bb = [L.beds && `${L.beds} bed`, L.baths && `${L.baths} bath`].filter(Boolean).join(" · ");
+  const facts = [[num(L.list_price) ? "$" + fmt(num(L.list_price)) : "", true], [bb], [num(L.sqft) ? `${fmt(num(L.sqft))} sq ft` : ""], [L.mls ? `MLS #${L.mls}` : ""], [L.status && L.status !== "Active" ? L.status : ""]].filter(([t]) => t);
   facts.forEach(([t, b]) => { const s = el("span"); if (b) s.append(el("b", {}, t)); else s.textContent = t; $("facts").append(s); });
 
   // Daily showings map
@@ -227,7 +233,9 @@ async function main() {
   // Online weekly
   const W = weekly.filter((r) => r.listing_id === LISTING_ID).sort((a, b) => a.report_date.localeCompare(b.report_date));
   const city = (c) => (c || "–").split(",")[0];
-  if (W.length) {
+  if (!W.length) {
+    ["lOnlineTiles", "fOnlineTiles"].forEach((h) => tile(h, "Online views", "–", "No ListTrac reports yet"));
+  } else {
     const last = W[W.length - 1], prev = W[W.length - 2], first = W[0];
     $("lOnlineRange").textContent = `${range(addDays(last.report_date, -7), last.report_date)}, ListTrac`;
     tile("lOnlineTiles", "Online views", fmt(num(last.views_7d)));
@@ -250,7 +258,8 @@ async function main() {
   tile("overallTiles", "Days online", fmt(daysBetween(start, asOf)));
   tile("overallTiles", "Online views", fmt(num(lastW.views_total)));
   tile("overallTiles", "Shares", fmt(num(lastW.shares_total)));
-  tile("overallTiles", "Saves", fmt((num(O.zillow_saves) || 0) + (num(O.redfin_saves) || 0)), "Zillow + Redfin");
+  const zs = num(O.zillow_saves), rs = num(O.redfin_saves);
+  tile("overallTiles", "Saves", zs == null && rs == null ? "–" : fmt((zs || 0) + (rs || 0)), "Zillow + Redfin");
   tile("overallTiles", "Showings", fmt([...byDay.values()].reduce((a, b) => a + b, 0)));
   tile("overallTiles", "Social views", fmt(num(O.social_views)));
 
